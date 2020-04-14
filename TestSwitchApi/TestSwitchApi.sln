@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSwitchApi", "TestSwitchApi\TestSwitchApi.csproj", "{D3C9FF29-D95C-4DF4-BDDB-467341D06212}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSwitchApi.Tests", "TestSwitchApi.Tests\TestSwitchApi.Tests.csproj", "{ADCF3665-83EA-469B-B2E7-33B1C6874263}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3C9FF29-D95C-4DF4-BDDB-467341D06212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C9FF29-D95C-4DF4-BDDB-467341D06212}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C9FF29-D95C-4DF4-BDDB-467341D06212}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C9FF29-D95C-4DF4-BDDB-467341D06212}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCF3665-83EA-469B-B2E7-33B1C6874263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCF3665-83EA-469B-B2E7-33B1C6874263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCF3665-83EA-469B-B2E7-33B1C6874263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCF3665-83EA-469B-B2E7-33B1C6874263}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
