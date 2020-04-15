@@ -4,17 +4,15 @@ orbs:
   win: circleci/windows@2.2.0
 
 jobs:
-  build-and-test:
+  only-test:
     executor: win/default
 
     steps:
       - checkout
-      - run: dotnet restore
-      - run: dotnet build
       - run: dotnet test --no-build TestSwitchApi.Tests
 
 
 workflows:
-  build-and-test:
+  only-test:
     jobs:
-      - build-and-test
+      - only-test
