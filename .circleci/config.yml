@@ -4,7 +4,7 @@ orbs:
   win: circleci/windows@2.2.0
 
 jobs:
-  only-test:
+  build-and-test:
     executor: win/default
 
     steps:
@@ -14,6 +14,6 @@ jobs:
 
 
 workflows:
-  only-test:
+  build-and-test:
     jobs:
-      - only-test
+      - build-and-test
