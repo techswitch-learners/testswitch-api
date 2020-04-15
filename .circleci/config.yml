@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - checkout
-      - run: dotnet test --no-build TestSwitchApi.Tests
+      - run: dotnet test --no-build .\TechSwitchApi\TestSwitchApi.Tests
 
 
 workflows:
