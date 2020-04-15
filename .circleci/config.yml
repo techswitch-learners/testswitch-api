@@ -9,8 +9,7 @@ jobs:
 
     steps:
       - checkout
-      - run: dotnet test --no-build TestSwitchApi\TestSwitchApi.Tests\TestSwitchApi.Tests.csp
-          roj
+      - run: dotnet test --no-build TestSwitchApi\TestSwitchApi.Tests\TestSwitchApi.Tests.csproj
 
 
 workflows:
