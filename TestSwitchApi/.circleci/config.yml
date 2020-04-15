@@ -9,8 +9,9 @@ jobs:
 
     steps:
       - checkout
+      - run: dotnet restore
       - run: dotnet build
-      - run: dotnet test
+      - run: dotnet test --no-build TestSwitchApi.Tests
 
 
 workflows:
