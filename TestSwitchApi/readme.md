@@ -1,6 +1,8 @@
 # TestSwitch API
 This is the API for the TestSwitch.
 
+### TestSwitch Database
+
 ### Linting
 We're using StyleCop to lint the project.  
 Some StyleCop rules are disabled in the .ruleset files in each project.
