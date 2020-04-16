@@ -9,7 +9,8 @@ jobs:
 
     steps:
       - checkout
-      - run: dotnet build TestSwitchApi\TestSwitchApi\TestSwitchApi.csproj
+      - run: dotnet build /warnaserror TestSwitchApi\TestSwitchApi\TestSwitchApi.csproj
+      - run: dotnet build /warnaserror TestSwitchApi\TestSwitchApi.Tests\TestSwitchApi.Tests.csproj
       - run: dotnet test TestSwitchApi\TestSwitchApi.Tests\TestSwitchApi.Tests.csproj
 
 
