@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <CodeAnalysisRuleSet>.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,5 +14,12 @@
       <Folder Include="DataMigrations" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <AdditionalFiles Include="stylecop.json" Link="stylecop.json" />
+    </ItemGroup>
 
 </Project>

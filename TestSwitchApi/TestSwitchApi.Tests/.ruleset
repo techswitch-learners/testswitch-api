@@ -1,0 +1,16 @@
+<RuleSet Name="Rules for TestSwitch-API" ToolsVersion="1.1.118">
+    <Rules AnalyzerId="Stylecop.Analyzers" RuleNamespace="Stylecop.Analyzers">
+        <!--See https://dotnetanalyzers.github.io/StyleCopAnalyzers/ for a dictionary of StyleCop rules.-->
+        <Rule Id="SA0001" Action="None"/>
+        <Rule Id="SA1003" Action="None"/> 
+        <Rule Id="SA1008" Action="None"/> 
+        <Rule Id="SA1009" Action="None"/>
+        <Rule Id="SA1101" Action="None"/>
+        <Rule Id="SA1110" Action="None"/>
+        <Rule Id="SA1111" Action="None"/>
+        <Rule Id="SA1309" Action="None"/>
+        <Rule Id="SA1310" Action="None"/>
+        <Rule Id="SA1516" Action="None"/>
+        <Rule Id="SA1633" Action="None"/>
+    </Rules>
+</RuleSet>

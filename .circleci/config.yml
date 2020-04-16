@@ -1,0 +1,20 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+jobs:
+  build-and-test:
+    executor: win/default
+
+    steps:
+      - checkout
+      - run: dotnet build /warnaserror TestSwitchApi\TestSwitchApi\TestSwitchApi.csproj
+      - run: dotnet build /warnaserror TestSwitchApi\TestSwitchApi.Tests\TestSwitchApi.Tests.csproj
+      - run: dotnet test TestSwitchApi\TestSwitchApi.Tests\TestSwitchApi.Tests.csproj
+
+
+workflows:
+  build-and-test:
+    jobs:
+      - build-and-test

@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace TestSwitchApi.Tests
 {
-    public class Tests
+    public class UnitTest1
     {
         [SetUp]
         public void Setup()
