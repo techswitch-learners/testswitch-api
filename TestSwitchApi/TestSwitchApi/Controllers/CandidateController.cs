@@ -11,17 +11,16 @@ namespace TestSwitchApi.Controllers
     {
         private readonly ICandidatesRepo _candidates;
 
-            public CandidateController(ICandidatesRepo candidates)
-            {
-                _candidates = candidates;
-            }
-
-            [HttpGet("")]
-            public IEnumerable<CandidateDataModel> GetCandidates()
-            {
-                var candidates = _candidates.GetAllCandidates();
-                return candidates;
-            }
-            
+        public CandidateController(ICandidatesRepo candidates)
+        {
+            _candidates = candidates;
         }
+
+        [HttpGet("")]
+        public IEnumerable<CandidateDataModel> GetCandidates()
+        {
+            var candidates = _candidates.GetAllCandidates();
+            return candidates;
+        }
+    }
 }
