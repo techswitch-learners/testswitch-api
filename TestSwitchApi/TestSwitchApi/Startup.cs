@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TestSwitchApi.ApiModels;
+using TestSwitchApi.Repositories;
 
 namespace TestSwitchApi
 {
@@ -26,6 +29,10 @@ namespace TestSwitchApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<ICandidatesRepo, CandidatesRepo>();
+            services.AddEntityFrameworkNpgsql()
+                .AddDbContext<TestSwitchDbContext>(opt =>
+                    opt.UseNpgsql(Configuration.GetConnectionString("testSwitchConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
