@@ -10,7 +10,7 @@ This is the API for the TestSwitch.
 1. Open PostgreSQL SQL Shell (psql)
 2. Click enter on the keyboard to go with default server: localhost, default database:postgres, default port:5432, default username:postgres
 3. Enter the password for the username:postgres
-4. Enter the command psql \i <your local folder path>/TestSwitshScript.sql
+4. Enter the command psql \i <your local folder path>/TestSwitchScript.sql
 
 
 ## Linting
