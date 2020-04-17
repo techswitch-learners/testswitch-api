@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TestSwitchApi.ApiModels;
 using TestSwitchApi.Repositories;
+using TestSwitchApi.Services;
 
 namespace TestSwitchApi
 {
@@ -28,11 +29,23 @@ namespace TestSwitchApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             services.AddControllers();
             services.AddTransient<ICandidatesRepo, CandidatesRepo>();
-            services.AddEntityFrameworkNpgsql()
+            if (env == "Production")
+            {
+                var dbservice = new DataBaseService();
+                var dbConnectionString = dbservice.ConnectionStringBuilder();
+                services.AddEntityFrameworkNpgsql()
+                    .AddDbContext<TestSwitchDbContext>(opt =>
+                        opt.UseNpgsql(dbConnectionString));
+            }
+            else
+            {
+                services.AddEntityFrameworkNpgsql()
                 .AddDbContext<TestSwitchDbContext>(opt =>
-                    opt.UseNpgsql(Configuration.GetConnectionString("testSwitchConnection")));
+              opt.UseNpgsql(Configuration.GetConnectionString("testSwitchConnection")));
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

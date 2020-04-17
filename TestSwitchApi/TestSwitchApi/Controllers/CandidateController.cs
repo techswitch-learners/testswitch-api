@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using TestSwitchApi.DataModels;
 using TestSwitchApi.Repositories;
+using TestSwitchApi.Services;
 
 namespace TestSwitchApi.Controllers
 {
