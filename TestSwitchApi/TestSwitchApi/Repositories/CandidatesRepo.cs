@@ -4,23 +4,23 @@ using TestSwitchApi.DataModels;
 
 namespace TestSwitchApi.Repositories
 {
-     public interface ICandidatesRepo
+    public interface ICandidatesRepo
+    {
+        IEnumerable<CandidateDataModel> GetAllCandidates();
+    }
+
+    public class CandidatesRepo : ICandidatesRepo
+    {
+        private readonly TestSwitchDbContext _context;
+
+        public CandidatesRepo(TestSwitchDbContext context)
         {
-            IEnumerable<CandidateDataModel> GetAllCandidates();
+            _context = context;
         }
 
-        public class CandidatesRepo : ICandidatesRepo
+        public IEnumerable<CandidateDataModel> GetAllCandidates()
         {
-            private readonly TestSwitchDbContext _context;
-
-            public CandidatesRepo(TestSwitchDbContext context)
-            {
-                _context = context;
-            }
-
-            public IEnumerable<CandidateDataModel> GetAllCandidates()
-            {
-                return _context.Candidate;
-            }
+            return _context.Candidate;
         }
+    }
 }

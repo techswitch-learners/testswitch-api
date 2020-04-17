@@ -43,8 +43,8 @@ namespace TestSwitchApi
             else
             {
                 services.AddEntityFrameworkNpgsql()
-                .AddDbContext<TestSwitchDbContext>(opt =>
-              opt.UseNpgsql(Configuration.GetConnectionString("testSwitchConnection")));
+                    .AddDbContext<TestSwitchDbContext>(opt =>
+                        opt.UseNpgsql(Configuration.GetConnectionString("testSwitchConnection")));
             }
         }
 
