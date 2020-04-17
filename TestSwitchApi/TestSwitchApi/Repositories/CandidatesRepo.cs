@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using TestSwitchApi.Models.ApiModels;
 using TestSwitchApi.DataModels;
+using TestSwitchApi.Models.ApiModels;
 using TestSwitchApi.Models.ApiModels;
 
 namespace TestSwitchApi.Repositories

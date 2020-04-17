@@ -17,7 +17,7 @@ namespace TestSwitchApi.Services
                 Port = databaseUri.Port,
                 Username = userInfo[0],
                 Password = userInfo[1],
-                Database = databaseUri.LocalPath.TrimStart('/')
+                Database = databaseUri.LocalPath.TrimStart('/'),
             };
 
             return builder.ToString() + ";sslmode=Require;Trust Server Certificate=true;";
