@@ -12,8 +12,6 @@ SET row_security = off;
 
 SET default_tablespace = '';
 
-SET default_table_access_method = heap;
-
 --
 -- TOC entry 202 (class 1259 OID 26364)
 -- Name: Candidate; Type: TABLE; Schema: public; Owner: postgres
