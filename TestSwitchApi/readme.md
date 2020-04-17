@@ -4,13 +4,13 @@ This is the API for the TestSwitch.
 ## TestSwitch Database
 ### Prerequisite
 1. Install PostgreSQL
-2. Download the TestSwitchDataMigration.sql from  GitHub data folder to a folder on your local client.
+2. Download the TestSwitchScript.sql from  GitHub DataMigrations folder to a folder on your local client.
 
 ### To install
 1. Open PostgreSQL SQL Shell (psql)
 2. Click enter on the keyboard to go with default server: localhost, default database:postgres, default port:5432, default username:postgres
 3. Enter the password for the username:postgres
-4. Enter the command psql \i C:/Training/CV/TestSwitshScript.sql
+4. Enter the command psql \i <your local folder path>/TestSwitshScript.sql
 
 
 ## Linting
