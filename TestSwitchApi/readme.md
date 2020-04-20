@@ -3,15 +3,17 @@ This is the API for the TestSwitch.
 
 ## TestSwitch Database
 ### Prerequisite
-1. Install PostgreSQL
-2. Download the TestSwitchScript.sql from  GitHub DataMigrations folder to a folder on your local client.
+1. Download PostgreSQL installer and install PostgreSQL
+2. Download the InitialSchemaSetup.sql from  GitHub DataMigrations folder to a folder on your local client.
 
-### To install
+### To create the TestSwitch database
 1. Open PostgreSQL SQL Shell (psql)
-2. Click enter on the keyboard to go with default server: localhost, default database:postgres, default port:5432, default username:postgres
-3. Enter the password for the username:postgres
-4. Enter the command psql \i <your local folder path>/TestSwitchScript.sql
+2. Provide all necessary information such as the server, database, port, username, and password that you entered during installing the PostgreSQL. To accept the default, you can press Enter.
+3. Enter the command psql \i (your local folder path)/InitialSchemaSetup.sql
 
+### Application changes
+1. Insert the database password into the connection string in appsettings.json.
+2. Ensure the port specified in the connection string is the one your database is running on.
 
 ## Linting
 We're using StyleCop to lint the project.  
