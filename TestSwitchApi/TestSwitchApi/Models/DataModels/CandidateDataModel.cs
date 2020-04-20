@@ -1,4 +1,4 @@
-﻿namespace TestSwitchApi.DataModels
+﻿namespace TestSwitchApi.Models.DataModels
 {
     public class CandidateDataModel
     {

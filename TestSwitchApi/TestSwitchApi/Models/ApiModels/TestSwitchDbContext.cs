@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TestSwitchApi.DataModels;
+using TestSwitchApi.Models.DataModels;
 
 namespace TestSwitchApi.Models.ApiModels
 {
@@ -10,6 +10,6 @@ namespace TestSwitchApi.Models.ApiModels
         {
         }
 
-        public DbSet<CandidateDataModel> Candidate { get; set; }
+        public DbSet<CandidateDataModel> Candidates { get; set; }
     }
 }

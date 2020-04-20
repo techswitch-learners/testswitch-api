@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using TestSwitchApi.DataModels;
 using TestSwitchApi.Models.ApiModels;
+using TestSwitchApi.Models.DataModels;
 
 namespace TestSwitchApi.Repositories
 {
@@ -15,7 +15,7 @@ namespace TestSwitchApi.Repositories
 
         public IEnumerable<CandidateDataModel> GetAllCandidates()
         {
-            return _context.Candidate;
+            return _context.Candidates;
         }
     }
 }

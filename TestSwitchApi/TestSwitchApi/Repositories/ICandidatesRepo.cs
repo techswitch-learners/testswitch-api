@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TestSwitchApi.DataModels;
+using TestSwitchApi.Models.DataModels;
 
 namespace TestSwitchApi.Repositories
 {

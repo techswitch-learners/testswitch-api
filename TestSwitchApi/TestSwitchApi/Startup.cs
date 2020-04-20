@@ -32,19 +32,19 @@ namespace TestSwitchApi
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             services.AddControllers();
             services.AddTransient<ICandidatesRepo, CandidatesRepo>();
-            if (env == "Production")
-            {
-                var dbservice = new DataBaseService();
-                var dbConnectionString = dbservice.ConnectionStringBuilder();
-                services.AddEntityFrameworkNpgsql()
-                    .AddDbContext<TestSwitchDbContext>(opt =>
-                        opt.UseNpgsql(dbConnectionString));
-            }
-            else
+            if (env == "Development")
             {
                 services.AddEntityFrameworkNpgsql()
                     .AddDbContext<TestSwitchDbContext>(opt =>
                         opt.UseNpgsql(Configuration.GetConnectionString("testSwitchConnection")));
+            }
+            else
+            {
+                var dbservice = new DatabaseService();
+                var dbConnectionString = dbservice.ConnectionStringBuilder();
+                services.AddEntityFrameworkNpgsql()
+                    .AddDbContext<TestSwitchDbContext>(opt =>
+                        opt.UseNpgsql(dbConnectionString));
             }
         }
 

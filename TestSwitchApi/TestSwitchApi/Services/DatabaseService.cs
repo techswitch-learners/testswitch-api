@@ -3,7 +3,7 @@ using Npgsql;
 
 namespace TestSwitchApi.Services
 {
-    public class DataBaseService
+    public class DatabaseService
     {
         public string ConnectionStringBuilder()
         {
@@ -18,9 +18,11 @@ namespace TestSwitchApi.Services
                 Username = userInfo[0],
                 Password = userInfo[1],
                 Database = databaseUri.LocalPath.TrimStart('/'),
+                TrustServerCertificate = true,
+                SslMode = SslMode.Require,
             };
 
-            return builder.ToString() + ";sslmode=Require;Trust Server Certificate=true;";
+            return builder.ToString();
         }
     }
 }
