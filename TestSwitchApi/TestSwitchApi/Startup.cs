@@ -41,7 +41,7 @@ namespace TestSwitchApi
             else
             {
                 var dbservice = new DatabaseService();
-                var dbConnectionString = dbservice.ConnectionStringBuilder();
+                var dbConnectionString = dbservice.BuildConnectionString();
                 services.AddEntityFrameworkNpgsql()
                     .AddDbContext<TestSwitchDbContext>(opt =>
                         opt.UseNpgsql(dbConnectionString));

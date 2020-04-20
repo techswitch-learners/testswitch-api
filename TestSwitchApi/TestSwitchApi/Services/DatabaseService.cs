@@ -5,7 +5,7 @@ namespace TestSwitchApi.Services
 {
     public class DatabaseService
     {
-        public string ConnectionStringBuilder()
+        public string BuildConnectionString()
         {
             var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
             var databaseUri = new Uri(databaseUrl);
