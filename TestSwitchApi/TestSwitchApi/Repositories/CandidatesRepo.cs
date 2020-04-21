@@ -21,9 +21,8 @@ namespace TestSwitchApi.Repositories
                 .OrderBy(c => c.FirstName)
                 .Skip((pageRequest.Page - 1) * pageRequest.PageSize)
                 .Take(pageRequest.PageSize);
-
         }
-        
+
         public int Count(PageRequest pageRequest)
         {
             return _context.Candidates
