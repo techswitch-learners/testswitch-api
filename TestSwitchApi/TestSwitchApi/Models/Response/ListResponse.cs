@@ -3,7 +3,7 @@ using TestSwitchApi.Models.Request;
 
 namespace TestSwitchApi.Models.Response
 {
-   public class ListResponse<T>
+    public class ListResponse<T>
     {
         private readonly string _path;
         public IEnumerable<T> Items { get; }
@@ -20,7 +20,7 @@ namespace TestSwitchApi.Models.Response
                     return null;
                 }
 
-                var url = $"/{_path}?page={Page + 1}&pageNumber={PageSize}";
+                var url = $"/{_path}?page={Page + 1}&pageSize={PageSize}";
 
                 return url;
             }
@@ -35,7 +35,7 @@ namespace TestSwitchApi.Models.Response
                     return null;
                 }
 
-                var url = $"/{_path}?page={Page - 1}&pageNumber={PageSize}";
+                var url = $"/{_path}?page={Page - 1}&pageSize={PageSize}";
 
                 return url;
             }
