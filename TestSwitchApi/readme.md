@@ -19,10 +19,10 @@ This is the API for the TestSwitch.
 We're using StyleCop to lint the project.  
 Some StyleCop rules are disabled in the .ruleset files in each project.
 
-I'd recommend using auto-format (`ctrl+shift+L` is the default Rider command, or go to Code > Reformat Code) to auto-format files if StyleCop is complaining about formatting.  
-I'd recommend using auto-optimise-imports (`ctrl+shift+O` default, or go to Code > Optimise imports) to remove unused using directives and fix any StyleCop import-ordering violations.
+I'd recommend using auto-format (`ctrl+alt+L` is the default Rider command, or go to Code > Reformat Code) to auto-format files if StyleCop is complaining about formatting.  
+I'd recommend using auto-optimise-imports (`ctrl+alt+O` default, or go to Code > Optimise imports) to remove unused using directives and fix any StyleCop import-ordering violations.
   
-If Rider disagrees with StyleCop as to how to format code, make sure that Rider's code style settings match StyleCop's settings (Settings (`ctrl+shift+s`) > Editor > Code Style > C#).
+If Rider disagrees with StyleCop as to how to format code, make sure that Rider's code style settings match StyleCop's settings (Settings (`ctrl+alt+S`) > Editor > Code Style > C#).
   
 I've made code style settings that seem to agree with StyleCop which are encapsulated in TestSwitchApi.sln.DotSettings.  
 This is checked into git, so it should take effect across the whole team.
