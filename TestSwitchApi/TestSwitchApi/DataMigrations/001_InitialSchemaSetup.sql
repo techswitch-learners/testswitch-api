@@ -58,19 +58,6 @@ ALTER TABLE ONLY public."Candidates" ALTER COLUMN "Id" SET DEFAULT nextval('publ
 INSERT INTO public."Candidates" ("FirstName", "LastName", "Email", "Id") VALUES ('Peter', 'Parker', 'amazing@web.net', 1);
 INSERT INTO public."Candidates" ("FirstName", "LastName", "Email", "Id") VALUES ('Faye', 'Valentine', 'myfunny@valentine.com', 2);
 INSERT INTO public."Candidates" ("FirstName", "LastName", "Email", "Id") VALUES ('Bruce', 'Wayne', 'darkKnight@gotham.com', 3);
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Jeffie', 'Norton', 'JNorton@web.net');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Lettie', 'Jalbert', 'LJalbert@valentine.com');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Gladis', 'Mcnatt', 'GMcnatt@gotham.com');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Merlin', 'Montesino', 'MMontesino@web.net');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Manuel', 'Berta', 'MBerta@valentine.com');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Janene', 'Stogner', 'JStogner@gotham.com');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Christian', 'Barba', 'CBarba@web.net');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Ward', 'Hawes', 'WHawes@valentine.com');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Sulema', 'Tussey', 'STussey@gotham.com');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Marvella', 'Smythe', 'MSmythe@web.net');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Phylis', 'Spengler', 'PSpengler@valentine.com');
-INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Alia', 'Tall', 'ATall@gotham.com');
-
 
 SELECT pg_catalog.setval('public.candidate_id_seq', 3, true);
 
