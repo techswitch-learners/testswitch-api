@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TestSwitchApi.Models.ApiModels;
 using TestSwitchApi.Models.DataModels;
+using TestSwitchApi.Models.Request;
 
 namespace TestSwitchApi.Repositories
 {
@@ -13,9 +15,18 @@ namespace TestSwitchApi.Repositories
             _context = context;
         }
 
-        public IEnumerable<CandidateDataModel> GetAllCandidates()
+        public IEnumerable<CandidateDataModel> GetAllCandidates(PageRequest pageRequest)
         {
-            return _context.Candidates;
+            return _context.Candidates
+                .OrderBy(c => c.FirstName)
+                .Skip((pageRequest.Page - 1) * pageRequest.PageSize)
+                .Take(pageRequest.PageSize);
+        }
+
+        public int Count(PageRequest pageRequest)
+        {
+            return _context.Candidates
+                .Count();
         }
     }
 }

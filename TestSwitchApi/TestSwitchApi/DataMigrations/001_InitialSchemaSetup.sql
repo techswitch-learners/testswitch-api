@@ -59,7 +59,6 @@ INSERT INTO public."Candidates" ("FirstName", "LastName", "Email", "Id") VALUES 
 INSERT INTO public."Candidates" ("FirstName", "LastName", "Email", "Id") VALUES ('Faye', 'Valentine', 'myfunny@valentine.com', 2);
 INSERT INTO public."Candidates" ("FirstName", "LastName", "Email", "Id") VALUES ('Bruce', 'Wayne', 'darkKnight@gotham.com', 3);
 
-
 SELECT pg_catalog.setval('public.candidate_id_seq', 3, true);
 
 SELECT pg_catalog.setval('public.result_candidate_id_seq', 1, false);
