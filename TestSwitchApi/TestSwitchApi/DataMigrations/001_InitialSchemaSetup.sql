@@ -61,6 +61,15 @@ INSERT INTO public."Candidates" ("FirstName", "LastName", "Email", "Id") VALUES 
 INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Jeffie', 'Norton', 'JNorton@web.net');
 INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Lettie', 'Jalbert', 'LJalbert@valentine.com');
 INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Gladis', 'Mcnatt', 'GMcnatt@gotham.com');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Merlin', 'Montesino', 'MMontesino@web.net');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Manuel', 'Berta', 'MBerta@valentine.com');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Janene', 'Stogner', 'JStogner@gotham.com');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Christian', 'Barba', 'CBarba@web.net');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Ward', 'Hawes', 'WHawes@valentine.com');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Sulema', 'Tussey', 'STussey@gotham.com');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Marvella', 'Smythe', 'MSmythe@web.net');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Phylis', 'Spengler', 'PSpengler@valentine.com');
+INSERT INTO public."Candidates" ("FirstName", "LastName", "Email") VALUES ('Alia', 'Tall', 'ATall@gotham.com');
 
 
 SELECT pg_catalog.setval('public.candidate_id_seq', 3, true);
