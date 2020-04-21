@@ -28,6 +28,5 @@ namespace TestSwitchApi.Repositories
             return _context.Candidates
                 .Count();
         }
-
     }
 }
