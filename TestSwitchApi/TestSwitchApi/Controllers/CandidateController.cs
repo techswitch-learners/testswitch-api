@@ -28,5 +28,12 @@ namespace TestSwitchApi.Controllers
             var candidateCount = _candidates.Count(pageRequest);
             return CandidateListResponse.Create(pageRequest, candidates, candidateCount);
         }
+
+        [HttpPost("register")]
+        public ActionResult<CandidateRegisteredResponse> RegisterCandidate([FromForm] CandidateRequest candidateRequest)
+        {
+            response = _candidates.Register(candidateRequest);
+            return response;
+        }
     }
 }
