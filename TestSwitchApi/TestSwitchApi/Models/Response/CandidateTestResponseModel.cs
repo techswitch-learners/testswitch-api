@@ -16,7 +16,6 @@ namespace TestSwitchApi.Models.Response
 
         public CandidateTestResponseModel(IEnumerable<CandidateTestModel> candidateTests, CandidateDataModel candidate)
         {
-         //   var tests = candidateTests.ToList();
             TestSubmissions = candidateTests.Select(candidateTest => new CandidateTestSummary(candidateTest));
             FirstName = candidate.FirstName;
             LastName = candidate.LastName;
