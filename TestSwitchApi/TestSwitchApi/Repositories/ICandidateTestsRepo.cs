@@ -5,6 +5,6 @@ namespace TestSwitchApi.Repositories
 {
     public interface ICandidateTestsRepo
     {
-        IEnumerable<CandidateTestModel> GetSubmissionsById(int Id);
+        IEnumerable<CandidateTestModel> GetSubmissionsById(int id);
     }
 }
