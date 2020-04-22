@@ -32,6 +32,13 @@ namespace TestSwitchApi
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             services.AddControllers();
             services.AddTransient<ICandidatesRepo, CandidatesRepo>();
+            services.AddCors(options =>
+                {
+                    options.AddPolicy(
+                        "AllowOrigin",
+                        builder => builder.WithOrigins(
+                            "http://localhost:3001", "http://localhost:3000", "https://testswitch-candidate-staging.herokuapp.com", "https://testswitch-candidate.herokuapp.com", "https://testswitch-admin-staging.herokuapp.com", "https://testswitch-admin.herokuapp.com"));
+                });
             if (env == "Development")
             {
                 services.AddEntityFrameworkNpgsql()
@@ -57,11 +64,9 @@ namespace TestSwitchApi
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
+            app.UseCors("AllowOrigin");
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
