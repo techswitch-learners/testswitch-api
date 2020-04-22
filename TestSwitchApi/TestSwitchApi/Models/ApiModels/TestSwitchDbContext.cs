@@ -11,5 +11,7 @@ namespace TestSwitchApi.Models.ApiModels
         }
 
         public DbSet<CandidateDataModel> Candidates { get; set; }
+        
+        public DbSet<CandidateTestModel> CandidateTests { get; set; }
     }
 }

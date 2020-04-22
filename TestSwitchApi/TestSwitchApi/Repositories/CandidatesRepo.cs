@@ -22,6 +22,13 @@ namespace TestSwitchApi.Repositories
                 .Skip((pageRequest.Page - 1) * pageRequest.PageSize)
                 .Take(pageRequest.PageSize);
         }
+        
+        public CandidateDataModel GetCandidateById(int id)
+        {
+            return _context.Candidates
+                .Single(c => c.Id == id);
+
+        }
 
         public int Count(PageRequest pageRequest)
         {
