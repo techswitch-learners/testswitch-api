@@ -65,8 +65,7 @@ namespace TestSwitchApi
 
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors(options => options.WithOrigins(
-                "http://localhost:3001", "http://localhost:3000", "https://testswitch-candidate-staging.herokuapp.com", "https://testswitch-candidate.herokuapp.com", "https://testswitch-admin-staging.herokuapp.com", "https://testswitch-admin.herokuapp.com"));
+            app.UseCors("AllowOrigin");
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
