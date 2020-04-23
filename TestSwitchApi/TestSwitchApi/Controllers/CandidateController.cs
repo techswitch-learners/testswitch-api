@@ -30,9 +30,9 @@ namespace TestSwitchApi.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult<CandidateRegisteredResponse> RegisterCandidate([FromForm] CandidateRequest candidateRequest)
+        public ActionResult<CandidateDataModel> RegisterCandidate([FromForm] CandidateRequest candidateRequest)
         {
-            response = _candidates.Register(candidateRequest);
+            var response = _candidates.Register(candidateRequest);
             return response;
         }
     }
