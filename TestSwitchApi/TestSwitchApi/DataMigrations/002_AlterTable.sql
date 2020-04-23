@@ -1,14 +1,4 @@
-﻿ALTER TABLE public."Tests"
-  ADD COLUMN "Title" character varying (128),
-  ADD COLUMN  "Question" text,
-  ADD COLUMN "Input" character varying (128),
-  ADD COLUMN "ExpectedOutput" character varying (128);
-
-ALTER TABLE public."Tests" DROP COLUMN "ModelAnswer";
-
-ALTER TABLE public."Tests" ADD COLUMN "ModelAnswer" text;
- 
-ALTER TABLE IF EXISTS "Results"
+﻿ALTER TABLE IF EXISTS "Results"
 RENAME TO "CandidateTests";
 
 ALTER TABLE public."CandidateTests" ADD COLUMN "TestAnswer" text;
