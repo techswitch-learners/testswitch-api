@@ -10,6 +10,7 @@ This is the API for the TestSwitch.
 1. Open PostgreSQL SQL Shell (psql)
 2. Provide all necessary information such as the server, database, port, username, and password that you entered during installing the PostgreSQL. To accept the default, you can press Enter.
 3. Enter the command psql \i (your local folder path)/InitialSchemaSetup.sql
+4. Make sure all alterations are run (including in the TestData directory) in the order that they are numbered.
 
 ### Application changes
 1. Insert the database password into the connection string in appsettings.json.
