@@ -18,7 +18,8 @@ namespace TestSwitchApi.Repositories
         public IEnumerable<CandidateTestModel> GetSubmissionsById(int id)
         {
             return _context.CandidateTests
-                .Where(s => s.CandidateId == id);
+                .Where(s => s.CandidateId == id)
+                .OrderBy(s => s.Id);
         }
     }
 }

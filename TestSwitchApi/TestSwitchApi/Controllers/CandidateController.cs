@@ -39,11 +39,11 @@ namespace TestSwitchApi.Controllers
             return new CandidateTestResponseModel(submissions, candidate);
         }
 
-        [HttpGet("{candidateId}/test-submissions")]
+        /*[HttpGet("{candidateId}/test-submissions")]
         public ActionResult<IEnumerable<CandidateTestModel>> GetTestSubmissions(int candidateId)
         {
             var submissions = _submissions.GetSubmissionsById(candidateId);
             return submissions.ToList();
-        }
+        }*/
     }
 }
