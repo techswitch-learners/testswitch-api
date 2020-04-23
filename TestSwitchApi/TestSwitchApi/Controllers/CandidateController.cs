@@ -29,7 +29,7 @@ namespace TestSwitchApi.Controllers
             return CandidateListResponse.Create(pageRequest, candidates, candidateCount);
         }
 
-        [HttpPost("register")]
+        [HttpPost("create")]
         public ActionResult<CandidateDataModel> RegisterCandidate([FromForm] CandidateRequest candidateRequest)
         {
             var response = _candidates.Register(candidateRequest);
