@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TestSwitchApi.Models.ApiModels;
 using TestSwitchApi.Models.DataModels;
@@ -37,9 +38,8 @@ namespace TestSwitchApi.Repositories
                 FirstName = candidateRequest.FirstName,
                 LastName = candidateRequest.LastName,
                 Email = candidateRequest.Email,
+                Guid = Guid.NewGuid().ToString(),
             });
-
-            // TODO: Can generate unique Url here and add to DB when we need to.
             _context.SaveChanges();
             return response.Entity;
         }
