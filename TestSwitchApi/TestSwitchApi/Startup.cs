@@ -32,6 +32,7 @@ namespace TestSwitchApi
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             services.AddControllers();
             services.AddTransient<ICandidatesRepo, CandidatesRepo>();
+            services.AddTransient<ICandidateTestsRepo, CandidateTestsRepo>();
             services.AddCors(options =>
                 {
                     options.AddPolicy(
