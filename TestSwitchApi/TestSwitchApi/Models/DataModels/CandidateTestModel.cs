@@ -5,10 +5,12 @@
     {
         public class CandidateTestModel
         {
-            [Key]
+            /*[Key]
             [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public int Id { get; set; }
+            public int Id { get; set; }*/
+            [Key]
             public int CandidateId { get; set; }
+            [Key]
             public int TestId { get; set; }
             public string TestResult { get; set; }
             public string TestAnswer { get; set; }

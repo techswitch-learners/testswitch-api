@@ -35,15 +35,8 @@ namespace TestSwitchApi.Controllers
         public ActionResult<CandidateTestResponseModel> GetCandidateTestSubmissions(int candidateId)
         {
             var candidate = _candidates.GetCandidateById(candidateId);
-            var submissions = _submissions.GetSubmissionsById(candidateId);
+            var submissions = _submissions.GetSubmissionsByCandidateId(candidateId);
             return new CandidateTestResponseModel(submissions, candidate);
         }
-
-        /*[HttpGet("{candidateId}/test-submissions")]
-        public ActionResult<IEnumerable<CandidateTestModel>> GetTestSubmissions(int candidateId)
-        {
-            var submissions = _submissions.GetSubmissionsById(candidateId);
-            return submissions.ToList();
-        }*/
     }
 }

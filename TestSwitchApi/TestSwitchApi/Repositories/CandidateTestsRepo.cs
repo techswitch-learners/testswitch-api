@@ -15,11 +15,11 @@ namespace TestSwitchApi.Repositories
             _context = context;
         }
 
-        public IEnumerable<CandidateTestModel> GetSubmissionsById(int id)
+        public IEnumerable<CandidateTestModel> GetSubmissionsByCandidateId(int id)
         {
             return _context.CandidateTests
                 .Where(s => s.CandidateId == id)
-                .OrderBy(s => s.Id);
+                .OrderBy(s => s.TestId);
         }
     }
 }

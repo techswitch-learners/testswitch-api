@@ -8,8 +8,6 @@ namespace TestSwitchApi.Models.Response
 {
     public class CandidateTestResponseModel
     {
-        /*private IEnumerable<CandidateTestModel> _candidateTests;
-        private readonly ICandidateTestsRepo _submissions;*/
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public IEnumerable<CandidateTestSummary> TestSubmissions { get; set; }

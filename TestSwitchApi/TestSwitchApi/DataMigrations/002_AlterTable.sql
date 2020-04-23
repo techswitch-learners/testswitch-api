@@ -1,10 +1,8 @@
-﻿ ALTER TABLE public."Tests" ADD COLUMN "Title" character varying (128);
-
-ALTER TABLE public."Tests" ADD COLUMN  "Question" text;
-
-ALTER TABLE public."Tests" ADD COLUMN "Input" character varying (128);
-
-ALTER TABLE public."Tests" ADD COLUMN "ExpectedOutput" character varying (128);
+﻿ALTER TABLE public."Tests"
+  ADD COLUMN "Title" character varying (128),
+  ADD COLUMN  "Question" text,
+  ADD COLUMN "Input" character varying (128),
+  ADD COLUMN "ExpectedOutput" character varying (128);
 
 ALTER TABLE public."Tests" DROP COLUMN "ModelAnswer";
 
@@ -13,23 +11,12 @@ ALTER TABLE public."Tests" ADD COLUMN "ModelAnswer" text;
 ALTER TABLE IF EXISTS "Results"
 RENAME TO "CandidateTests";
 
-ALTER TABLE public."CandidateTests" ADD COLUMN "TestAnswer" character varying(1000)
+ALTER TABLE public."CandidateTests" ADD COLUMN "TestAnswer" text;
 
-ALTER TABLE ONLY public."CandidateTests" ADD COLUMN "Id" bigint NOT NULL;
-
-CREATE SEQUENCE public.candidate_test_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-ALTER SEQUENCE public.candidate_test_id_seq OWNED BY public."CandidateTests"."Id";
-
-ALTER TABLE ONLY public."CandidateTests" ALTER COLUMN "Id" SET DEFAULT nextval('public.candidate_test_id_seq'::regclass);
-
-ALTER TABLE ONLY public."CandidateTests"
-    ADD CONSTRAINT candidatetest_id_pk PRIMARY KEY ("Id");
+ALTER TABLE public."CandidateTests"
+    ALTER COLUMN "TestId" SET NOT NULL;
+ALTER TABLE public."CandidateTests"
+    ADD PRIMARY KEY ("CandidateId", "TestId");
     
 ALTER TABLE ONLY public."CandidateTests" ALTER COLUMN "CandidateId" DROP IDENTITY;
 
