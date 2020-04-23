@@ -15,17 +15,8 @@ namespace TestSwitchApi.Tests
 {
     public class CandidatesListResponseTest
     {
-        public CandidatesListResponseTest()
-        {
-        }
-
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
-        public void TestingForNoCandidates()
+        public void PrevNextIsNullForNoCandidates()
         {
             var candidates = new List<CandidateDataModel>();
             var pageRequest = new PageRequest
@@ -33,7 +24,7 @@ namespace TestSwitchApi.Tests
                 Page = 1,
                 PageSize = 10,
             };
-            var candidatesListResponse = CandidateListResponse.Create(pageRequest, candidates, 0);
+            var candidatesListResponse = new CandidateListResponse(pageRequest, candidates, 0);
             candidatesListResponse.TotalNumberOfItems.Should().Be(0);
             candidatesListResponse.Items.Count().Should().Be(0);
             candidatesListResponse.Page.Should().Be(1);
@@ -43,27 +34,16 @@ namespace TestSwitchApi.Tests
         }
 
         [Test]
-        public void CheckingFirstPageOfCandidates()
+        public void PrevIsNullNextIsEnabledFirstTime()
         {
-            var candidates = new List<CandidateDataModel>();
-            for (int cnt = 0; cnt < 10; cnt++)
-            {
-                var candidateDataModel = new CandidateDataModel
-                {
-                    Id = cnt,
-                    FirstName = "test" + cnt,
-                    LastName = "Name",
-                    Email = "test" + cnt + "." + "Name@test.com",
-                };
-                candidates.Add(candidateDataModel);
-            }
+            var candidates = CreateCandidateDataModels(10);
 
             var pageRequest = new PageRequest
             {
                 Page = 1,
                 PageSize = 10,
             };
-            var candidatesListResponse = CandidateListResponse.Create(pageRequest, candidates, 15);
+            var candidatesListResponse = new CandidateListResponse(pageRequest, candidates, 15);
             candidatesListResponse.TotalNumberOfItems.Should().Be(15);
             candidatesListResponse.Items.Count().Should().Be(10);
             candidatesListResponse.Page.Should().Be(1);
@@ -73,27 +53,16 @@ namespace TestSwitchApi.Tests
         }
 
         [Test]
-        public void CheckingThatNextPageAndPrevPageAreEnabled()
+        public void NextPageAndPrevPageAreEnabledWhenDataMoreThanPageSize()
         {
-            var candidates = new List<CandidateDataModel>();
-            for (int cnt = 0; cnt < 10; cnt++)
-            {
-                var candidateDataModel = new CandidateDataModel
-                {
-                    Id = cnt,
-                    FirstName = "test" + cnt,
-                    LastName = "Name",
-                    Email = "test" + cnt + "." + "Name@test.com",
-                };
-                candidates.Add(candidateDataModel);
-            }
+            var candidates = CreateCandidateDataModels(10);
 
             var pageRequest = new PageRequest
             {
                 Page = 2,
                 PageSize = 10,
             };
-            var candidatesListResponse = CandidateListResponse.Create(pageRequest, candidates, 25);
+            var candidatesListResponse = new CandidateListResponse(pageRequest, candidates, 25);
             candidatesListResponse.TotalNumberOfItems.Should().Be(25);
             candidatesListResponse.Items.Count().Should().Be(10);
             candidatesListResponse.Page.Should().Be(2);
@@ -103,33 +72,41 @@ namespace TestSwitchApi.Tests
         }
 
         [Test]
-        public void CheckingThatOnlyPrevPageIsEnabledForTheLastPage()
+        public void OnlyPrevPageIsEnabledForTheLastPage()
         {
-            var candidates = new List<CandidateDataModel>();
-            for (int cnt = 0; cnt < 5; cnt++)
-            {
-                var candidateDataModel = new CandidateDataModel
-                {
-                    Id = cnt,
-                    FirstName = "test" + cnt,
-                    LastName = "Name",
-                    Email = "test" + cnt + "." + "Name@test.com",
-                };
-                candidates.Add(candidateDataModel);
-            }
+            var candidates = CreateCandidateDataModels(5);
+
 
             var pageRequest = new PageRequest
             {
                 Page = 3,
                 PageSize = 10,
             };
-            var candidatesListResponse = CandidateListResponse.Create(pageRequest, candidates, 15);
+            var candidatesListResponse = new CandidateListResponse(pageRequest, candidates, 15);
             candidatesListResponse.TotalNumberOfItems.Should().Be(15);
             candidatesListResponse.Items.Count().Should().Be(5);
             candidatesListResponse.Page.Should().Be(3);
             candidatesListResponse.PageSize.Should().Be(10);
             candidatesListResponse.PreviousPage.Should().Be("/candidates?page=2&pageSize=10");
             candidatesListResponse.NextPage.Should().BeNullOrEmpty();
+        }
+
+        private List<CandidateDataModel> CreateCandidateDataModels(int numModels)
+        {
+            var candidates = new List<CandidateDataModel>();
+            for (int i = 0; i < numModels; i++)
+            {
+                var candidateDataModel = new CandidateDataModel
+                {
+                    Id = i,
+                    FirstName = "test" + i,
+                    LastName = "Name",
+                    Email = $"test{i}.Name@test.com",
+                };
+                candidates.Add(candidateDataModel);
+            }
+
+            return candidates;
         }
     }
 }

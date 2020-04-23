@@ -26,7 +26,7 @@ namespace TestSwitchApi.Controllers
         {
             var candidates = _candidates.GetAllCandidates(pageRequest);
             var candidateCount = _candidates.Count(pageRequest);
-            return CandidateListResponse.Create(pageRequest, candidates, candidateCount);
+            return new CandidateListResponse(pageRequest, candidates, candidateCount);
         }
     }
 }
