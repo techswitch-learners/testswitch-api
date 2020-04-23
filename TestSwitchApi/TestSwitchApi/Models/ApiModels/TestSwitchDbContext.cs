@@ -17,7 +17,7 @@ namespace TestSwitchApi.Models.ApiModels
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CandidateTestModel>()
-                .HasKey(c => new {c.CandidateId, c.TestId});
+                .HasKey(c => new { c.CandidateId, c.TestId });
         }
     }
 }
