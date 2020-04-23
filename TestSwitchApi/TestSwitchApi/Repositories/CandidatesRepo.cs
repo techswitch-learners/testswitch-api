@@ -38,7 +38,8 @@ namespace TestSwitchApi.Repositories
                 LastName = candidateRequest.LastName,
                 Email = candidateRequest.Email,
             });
-            //TODO: Can generate unique Url here and add to DB when we need to.
+
+            // TODO: Can generate unique Url here and add to DB when we need to.
             _context.SaveChanges();
             return response.Entity;
         }
