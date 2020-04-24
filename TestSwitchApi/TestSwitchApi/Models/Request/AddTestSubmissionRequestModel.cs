@@ -6,6 +6,7 @@ namespace TestSwitchApi.Models.Request
     {
         [Required]
         public int TestId { get; set; }
+        [Required]
         public string TestAnswer { get; set; }
     }
 }

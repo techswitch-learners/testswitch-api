@@ -7,10 +7,9 @@ using TestSwitchApi.Repositories;
 
 namespace TestSwitchApi.Controllers
 {
-    [ApiController]
-    [Route("/sessions")]
-    [EnableCors("AllowOrigin")]
-    public class SessionsController : Controller
+  [ApiController]
+  [Route("/sessions")]
+  public class SessionsController : Controller
     {
         private readonly ICandidatesRepo _candidates;
         private readonly ICandidateTestsRepo _submissions;
@@ -22,13 +21,17 @@ namespace TestSwitchApi.Controllers
         }
 
         [HttpPost("{tokenId}")]
-        public ActionResult<CandidateTestModel> AddTestSubmission([FromRoute] string tokenId, [FromBody] AddTestSubmissionRequestModel newSubmission)
+        public ActionResult<CandidateTestModel> AddTestSubmission([FromRoute] string tokenId, [FromForm] AddTestSubmissionRequestModel newSubmission)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var candidate = _candidates.GetCandidateByGuid(tokenId);
             if (candidate!=null)
             {
-                var testSubmission = _submissions.AddTestSubmission(candidate.Id, newSubmission);
-                return testSubmission;
+                return _submissions.AddTestSubmission(candidate.Id, newSubmission);
             }
 
             return StatusCode(401, "Invalid token");
