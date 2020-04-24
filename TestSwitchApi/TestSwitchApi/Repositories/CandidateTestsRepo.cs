@@ -23,7 +23,7 @@ namespace TestSwitchApi.Repositories
                 .OrderBy(s => s.TestId);
         }
 
-        public CandidateTestModel AddTestSubmission(int candidateId,AddTestSubmissionRequestModel testSubmissionModel)
+        public CandidateTestModel AddTestSubmission(int candidateId, AddTestSubmissionRequestModel testSubmissionModel)
         {
             var insertTest = _context.CandidateTests.Add(new CandidateTestModel()
             {
