@@ -15,5 +15,6 @@ namespace TestSwitchApi.Models.Response
         public string FirstName => _candidate.FirstName;
         public string LastName => _candidate.LastName;
         public string Email => _candidate.Email;
+        public string Guid => _candidate.Guid;
     }
 }

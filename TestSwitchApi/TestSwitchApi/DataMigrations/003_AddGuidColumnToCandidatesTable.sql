@@ -1,0 +1,1 @@
+﻿ALTER TABLE public."Candidates" ADD COLUMN "Guid" character varying (36);

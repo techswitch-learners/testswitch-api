@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using TestSwitchApi.Models.DataModels;
 using TestSwitchApi.Models.Request;
@@ -37,6 +38,18 @@ namespace TestSwitchApi.Controllers
             var candidate = _candidates.GetCandidateById(candidateId);
             var submissions = _submissions.GetSubmissionsByCandidateId(candidateId);
             return new CandidateTestResponseModel(submissions, candidate);
+        }
+
+        [HttpPost("create")]
+        public ActionResult<CandidateDataModel> RegisterCandidate([FromForm] CandidateRequest candidateRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var newCandidate = _candidates.Register(candidateRequest);
+            return newCandidate;
         }
     }
 }
