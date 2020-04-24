@@ -9,6 +9,7 @@ namespace TestSwitchApi.Repositories
     {
             IEnumerable<CandidateDataModel> GetAllCandidates(PageRequest pageRequest);
             CandidateDataModel GetCandidateById(int id);
+            CandidateDataModel GetCandidateByGuid(string guid);
             int Count(PageRequest pageRequest);
             CandidateDataModel Register(CandidateRequest candidateRequest);
     }
