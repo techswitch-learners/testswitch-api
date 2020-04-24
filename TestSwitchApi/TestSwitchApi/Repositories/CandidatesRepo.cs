@@ -36,7 +36,7 @@ namespace TestSwitchApi.Repositories
             return _context.Candidates
                 .SingleOrDefault(c => c.Guid==guid);
         }
-        
+
         public int Count(PageRequest pageRequest)
         {
             return _context.Candidates
