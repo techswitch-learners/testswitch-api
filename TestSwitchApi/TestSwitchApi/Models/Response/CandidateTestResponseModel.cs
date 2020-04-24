@@ -10,6 +10,7 @@ namespace TestSwitchApi.Models.Response
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Guid { get; set; }
         public IEnumerable<CandidateTestSummary> TestSubmissions { get; set; }
 
         public CandidateTestResponseModel(IEnumerable<CandidateTestModel> candidateTests, CandidateDataModel candidate)
@@ -17,6 +18,7 @@ namespace TestSwitchApi.Models.Response
             TestSubmissions = candidateTests.Select(candidateTest => new CandidateTestSummary(candidateTest));
             FirstName = candidate.FirstName;
             LastName = candidate.LastName;
+            Guid = candidate.Guid;
         }
     }
 }
