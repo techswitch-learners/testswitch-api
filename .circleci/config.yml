@@ -6,9 +6,9 @@ jobs:
 
     steps:
       - checkout
-      - run: dotnet build /warnaserror TestSwitchApi.csproj
-      - run: dotnet build /warnaserror TestSwitchApi.Tests.csproj
-      - run: dotnet test TestSwitchApi.Tests.csproj
+      - run: dotnet build
+      - run: dotnet build
+      - run: dotnet test
 
 workflows:
   build-and-test:
