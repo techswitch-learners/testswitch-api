@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TestSwitchApi.Models.ApiModels;
 using TestSwitchApi.Models.DataModels;
@@ -20,6 +21,19 @@ namespace TestSwitchApi.Repositories
             return _context.CandidateTests
                 .Where(s => s.CandidateId == id)
                 .OrderBy(s => s.TestId);
+        }
+
+        public CandidateTestModel AddTestSubmission(int candidateId, AddTestSubmissionRequestModel testSubmissionModel)
+        {
+            var insertTest = _context.CandidateTests.Add(new CandidateTestModel()
+            {
+                CandidateId = candidateId,
+                TestId = testSubmissionModel.TestId,
+                TestAnswer = testSubmissionModel.TestAnswer,
+                EndTime = DateTime.Now,
+            });
+            _context.SaveChanges();
+            return insertTest.Entity;
         }
     }
 }

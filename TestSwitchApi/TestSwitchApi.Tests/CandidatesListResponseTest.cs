@@ -75,8 +75,6 @@ namespace TestSwitchApi.Tests
         public void OnlyPrevPageIsEnabledForTheLastPage()
         {
             var candidates = CreateCandidateDataModels(5);
-
-
             var pageRequest = new PageRequest
             {
                 Page = 3,
