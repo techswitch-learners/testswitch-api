@@ -6,7 +6,7 @@ jobs:
 
     steps:
       - checkout
-      - run: dotnet build
+      - run: ls
       - run: dotnet build
       - run: dotnet test
 
