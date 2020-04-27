@@ -7,8 +7,9 @@ jobs:
     steps:
       - checkout
       - run: ls
-      - run: dotnet build
-      - run: dotnet test
+      - run: dotnet build TestSwitchApi/TestSwitchApi/TestSwitchApi.csproj
+      - run: dotnet build TestSwitchApi/TestSwitchApi.Tests/TestSwitchApi.Tests.csproj
+      - run: dotnet test TestSwitchApi/TestSwitchApi.Tests/TestSwitchApi.Tests.csproj
 
 workflows:
   build-and-test:
