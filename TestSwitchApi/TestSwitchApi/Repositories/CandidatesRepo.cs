@@ -31,6 +31,12 @@ namespace TestSwitchApi.Repositories
                 .Single(c => c.Id == id);
         }
 
+        public CandidateDataModel GetCandidateByGuid(string guid)
+        {
+            return _context.Candidates
+                .SingleOrDefault(c => c.Guid==guid);
+        }
+
         public int Count(PageRequest pageRequest)
         {
             return _context.Candidates
