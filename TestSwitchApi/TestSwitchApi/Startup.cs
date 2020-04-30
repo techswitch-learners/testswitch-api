@@ -33,6 +33,7 @@ namespace TestSwitchApi
             services.AddControllers();
             services.AddTransient<ICandidatesRepo, CandidatesRepo>();
             services.AddTransient<ICandidateTestsRepo, CandidateTestsRepo>();
+            services.AddTransient<IAdminRepo, AdminRepo>();
             services.AddCors(options =>
                 {
                     options.AddPolicy(
