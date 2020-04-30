@@ -5,12 +5,12 @@
                                      "PasswordSalt" VARCHAR(24) NOT NULL
 );
 
-CREATE TABLE public."AdminSessionID"(
-                                        "Id" BIGSERIAL NOT NULL PRIMARY KEY UNIQUE,
+CREATE TABLE public."AdminUserSessions"(
+                                        "Id" VARCHAR(128) NOT NULL PRIMARY KEY UNIQUE,
                                         "AdminUserID" BIGINT NOT NULL,
                                         "SessionStart" TIMESTAMP NOT NULL,
                                         "SessionEnd" TIMESTAMP NOT NULL
 );
 
-ALTER TABLE ONLY public."AdminSessionID"
+ALTER TABLE ONLY public."AdminUserSessions"
     ADD CONSTRAINT AdminUserID_fk FOREIGN KEY ("AdminUserID") REFERENCES public."AdminUsers"("Id") NOT VALID;
