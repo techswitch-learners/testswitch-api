@@ -41,13 +41,13 @@ namespace TestSwitchApi.Repositories
 
         public AdminUserDataModel GetAdminByEmail(string email)
         {
-            return _context.AdminUsers
-                .Single(c => c.Email == email);
+            return _context.AdminUsers.Single(c => c.Email == email);
         }
 
-        public bool IsLoginValid(string email, string password)
+        public bool IsLoginPasswordValid(string passwordInput, string databaseSalt, string databaseHashedPassword)
         {
-            return false;
+            var hashedPasswordInput = HashPassword(passwordInput, databaseSalt);
+            return hashedPasswordInput == databaseHashedPassword;
         }
     }
 }
