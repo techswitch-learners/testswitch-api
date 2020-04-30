@@ -1,1 +1,0 @@
-﻿ALTER TABLE public."Candidates" ADD COLUMN "TestStatus" character varying (36);
