@@ -1,11 +1,21 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using TestSwitchApi.Models.ApiModels;
+using TestSwitchApi.Models.DataModels;
 
 namespace TestSwitchApi.Repositories
 {
     public class AdminRepo : IAdminRepo
     {
+        private readonly TestSwitchDbContext _context;
+
+        public AdminRepo(TestSwitchDbContext context)
+        {
+            _context = context;
+        }
+
         public string GenerateSalt()
         {
             byte[] saltBytes = new byte[128 / 8];
@@ -27,6 +37,17 @@ namespace TestSwitchApi.Repositories
                 iterationCount: 5000,
                 numBytesRequested: 256 / 8));
             return hashed;
+        }
+
+        public AdminUserDataModel GetAdminByEmail(string email)
+        {
+            return _context.AdminUsers
+                .Single(c => c.Email == email);
+        }
+
+        public bool IsLoginValid(string email, string password)
+        {
+            return false;
         }
     }
 }
