@@ -1,1 +1,1 @@
-﻿INSERT INTO public."AdminUsers" ("Email", "HashedPassword", "PasswordSalt") VALUES ('Sasha.Burgoyne@softwire.com', 'qsbG6wRhWtvO43rQrmWzv2KxU0qb3QJgxoe5VKUGc1M=', 'PUoiaOIdgPTJxqMuL9ABDA==');
+﻿INSERT INTO public."AdminUsers" ("Email", "HashedPassword", "PasswordSalt") VALUES ('Sasha.Burgoyne@softwire.com', 'wjE/1fK7BWmAdzJ7aDrizSrlrlWFG5EQgYx5S8BWVcQ=', 'noQG9P9hvVaBkyFU3X1OQQ==');
