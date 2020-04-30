@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TestSwitchApi.Models.DataModels;
 using TestSwitchApi.Repositories;
+using TestSwitchApi.Services;
 
 namespace TestSwitchApi.Controllers
 {
@@ -10,9 +11,11 @@ namespace TestSwitchApi.Controllers
     public class AdminSigninController : Controller
     {
         private readonly IAdminRepo _adminRepo;
-        public AdminSigninController(IAdminRepo adminRepo)
+        private readonly IPasswordService _passwordService;
+        public AdminSigninController(IAdminRepo adminRepo, IPasswordService passwordService)
         {
             _adminRepo = adminRepo;
+            _passwordService = passwordService;
         }
 
         [HttpPost("")]
@@ -26,7 +29,7 @@ namespace TestSwitchApi.Controllers
                 return Unauthorized();
             }
 
-            var passwordValid = _adminRepo.IsLoginPasswordValid(password, adminUser.PasswordSalt, adminUser.HashedPassword);
+            var passwordValid = _passwordService.IsLoginPasswordValid(password, adminUser.PasswordSalt, adminUser.HashedPassword);
             var sessionId = " ";
             return sessionId;
         }
