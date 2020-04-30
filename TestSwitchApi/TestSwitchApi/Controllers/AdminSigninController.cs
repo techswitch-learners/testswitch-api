@@ -19,10 +19,8 @@ namespace TestSwitchApi.Controllers
         }
 
         [HttpPost("")]
-        public ActionResult<string> AttemptLogin([FromForm] string email, string password)
+        public ActionResult<string> AttemptLogin([FromForm] string email, [FromForm] string password)
         {
-            //test if exists in DB
-            //--if not then return 403 response
             var adminUser = _adminRepo.GetAdminByEmail(email);
             if (adminUser == null)
             {
@@ -30,8 +28,12 @@ namespace TestSwitchApi.Controllers
             }
 
             var passwordValid = _passwordService.IsLoginPasswordValid(password, adminUser.PasswordSalt, adminUser.HashedPassword);
-            var sessionId = " ";
-            return sessionId;
+            if (!passwordValid)
+            {
+                return Unauthorized();
+            }
+
+            return "Valid Email and Password";
         }
 
         [HttpPost("test")]
