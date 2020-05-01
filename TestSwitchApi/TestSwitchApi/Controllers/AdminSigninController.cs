@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TestSwitchApi.Models.DataModels;
+﻿using Microsoft.AspNetCore.Mvc;
 using TestSwitchApi.Repositories;
 using TestSwitchApi.Services;
 
