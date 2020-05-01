@@ -13,7 +13,7 @@ namespace TestSwitchApi.Models.DataModels
         public string TestResult { get; set; }
         public string TestAnswer { get; set; }
 
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime? StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
     }
 }
