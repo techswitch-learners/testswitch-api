@@ -5,22 +5,18 @@ namespace TestSwitchApi.Models.Response
     public class CandidateTestStatus
     {
         public string TestName { get; set; }
-        public string TestStatus { get; set; }
+        public Status TestStatus { get; set; }
 
-        private enum Status
+        public enum Status
         {
             NotCompleted,
             Completed,
         }
 
-        public CandidateTestStatus()
-        {
-        }
-
         public CandidateTestStatus(CandidateTestModel candidateTest)
         {
             TestName = $"Test {candidateTest.TestId}";
-            TestStatus = candidateTest.EndTime == null?Status.Completed.ToString() : Status.NotCompleted.ToString();
+            TestStatus = candidateTest.EndTime == null?Status.NotCompleted : Status.Completed;
         }
     }
 }
