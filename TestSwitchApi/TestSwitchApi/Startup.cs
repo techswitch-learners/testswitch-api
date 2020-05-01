@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +31,10 @@ namespace TestSwitchApi
         public void ConfigureServices(IServiceCollection services)
         {
             var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(opts =>
+            {
+                opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
             services.AddTransient<ICandidatesRepo, CandidatesRepo>();
             services.AddTransient<ICandidateTestsRepo, CandidateTestsRepo>();
             services.AddCors(options =>
