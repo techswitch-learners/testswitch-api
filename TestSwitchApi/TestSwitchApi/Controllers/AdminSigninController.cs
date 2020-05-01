@@ -33,7 +33,13 @@ namespace TestSwitchApi.Controllers
                 return Unauthorized();
             }
 
-            return "Valid Email and Password";
+            var newSession = _adminRepo.CreateAndStoreSession(adminUser.Id);
+            if (newSession == null)
+            {
+                return Unauthorized("Database error");
+            }
+
+            return newSession.Id;
         }
     }
 }

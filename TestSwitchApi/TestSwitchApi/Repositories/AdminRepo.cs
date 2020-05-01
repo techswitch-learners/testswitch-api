@@ -20,5 +20,14 @@ namespace TestSwitchApi.Repositories
         {
             return _context.AdminUsers.SingleOrDefault(c => c.Email == email);
         }
+
+        public AdminUserSession CreateAndStoreSession(int adminUserId)
+        {
+            var newSession = new AdminUserSession
+                { Id = Guid.NewGuid().ToString(), AdminUserID = adminUserId };
+            _context.AdminUserSessions.Add(newSession);
+            _context.SaveChanges();
+            return _context.AdminUserSessions.SingleOrDefault(s => s.Id == newSession.Id);
+        }
     }
 }

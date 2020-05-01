@@ -8,8 +8,8 @@
 CREATE TABLE public."AdminUserSessions"(
                                         "Id" VARCHAR(128) NOT NULL PRIMARY KEY UNIQUE,
                                         "AdminUserID" BIGINT NOT NULL,
-                                        "SessionStart" TIMESTAMP NOT NULL,
-                                        "SessionEnd" TIMESTAMP NOT NULL
+                                        "SessionStart" VARCHAR(128) NOT NULL,
+                                        "SessionEnd" VARCHAR(128) NOT NULL
 );
 
 ALTER TABLE ONLY public."AdminUserSessions"
