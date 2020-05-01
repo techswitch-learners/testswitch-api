@@ -21,7 +21,7 @@ namespace TestSwitchApi.Controllers
         }
 
         [HttpPost("{tokenId}")]
-        public ActionResult<CandidateTestModel> AddTestSubmission([FromRoute] string tokenId, [FromForm] AddTestSubmissionRequestModel newSubmission)
+        public ActionResult<CandidateTestModel> AddTestSubmission([FromRoute] string tokenId, [FromBody] AddTestSubmissionRequestModel newSubmission)
         {
             if (!ModelState.IsValid)
             {
@@ -31,7 +31,15 @@ namespace TestSwitchApi.Controllers
             var candidate = _candidates.GetCandidateByGuid(tokenId);
             if (candidate!=null)
             {
-                return _submissions.AddTestSubmission(candidate.Id, newSubmission);
+                try
+                {
+                    _submissions.AddTestSubmission(candidate.Id, newSubmission);
+                    return StatusCode(200);
+                }
+                catch
+                {
+                    return StatusCode(500);
+                }
             }
 
             return StatusCode(401, "Invalid token");
