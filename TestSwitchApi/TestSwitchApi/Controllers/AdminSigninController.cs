@@ -12,6 +12,7 @@ namespace TestSwitchApi.Controllers
     {
         private readonly IAdminRepo _adminRepo;
         private readonly IPasswordService _passwordService;
+
         public AdminSigninController(IAdminRepo adminRepo, IPasswordService passwordService)
         {
             _adminRepo = adminRepo;
@@ -27,19 +28,14 @@ namespace TestSwitchApi.Controllers
                 return Unauthorized();
             }
 
-            var passwordValid = _passwordService.IsLoginPasswordValid(password, adminUser.PasswordSalt, adminUser.HashedPassword);
+            var passwordValid =
+                _passwordService.IsLoginPasswordValid(password, adminUser.PasswordSalt, adminUser.HashedPassword);
             if (!passwordValid)
             {
                 return Unauthorized();
             }
 
             return "Valid Email and Password";
-        }
-
-        [HttpPost("test")]
-        public AdminUserDataModel CheckEmailExists([FromForm] string email)
-        {
-            return _adminRepo.GetAdminByEmail(email);
         }
     }
 }
