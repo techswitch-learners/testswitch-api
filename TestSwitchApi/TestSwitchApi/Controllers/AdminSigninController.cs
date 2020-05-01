@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TestSwitchApi.Models.Request;
 using TestSwitchApi.Repositories;
 using TestSwitchApi.Services;
 
@@ -18,16 +19,21 @@ namespace TestSwitchApi.Controllers
         }
 
         [HttpPost("")]
-        public ActionResult<string> AttemptLogin([FromForm] string email, [FromForm] string password)
+        public ActionResult<string> AttemptLogin([FromForm] LoginRequest loginRequest)
         {
-            var adminUser = _adminRepo.GetAdminByEmail(email);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var adminUser = _adminRepo.GetAdminByEmail(loginRequest.Email);
             if (adminUser == null)
             {
                 return Unauthorized();
             }
 
             var passwordValid =
-                _passwordService.IsLoginPasswordValid(password, adminUser.PasswordSalt, adminUser.HashedPassword);
+                _passwordService.IsLoginPasswordValid(loginRequest.Password, adminUser.PasswordSalt, adminUser.HashedPassword);
             if (!passwordValid)
             {
                 return Unauthorized();
