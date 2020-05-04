@@ -12,7 +12,7 @@ namespace TestSwitchApi.Models.DataModels
         public string Email
         {
             get => Email;
-            set => Email.ToLower();
+            set => value.ToLower();
         }
 
         public string HashedPassword { get; set; }
