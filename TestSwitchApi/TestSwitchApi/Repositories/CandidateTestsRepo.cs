@@ -4,6 +4,7 @@ using System.Linq;
 using TestSwitchApi.Models.ApiModels;
 using TestSwitchApi.Models.DataModels;
 using TestSwitchApi.Models.Request;
+using TestSwitchApi.Models.Response;
 
 namespace TestSwitchApi.Repositories
 {
@@ -34,6 +35,19 @@ namespace TestSwitchApi.Repositories
             });
             _context.SaveChanges();
             return insertTest.Entity;
+        }
+
+        public CandidateTestStatus GetCandidateTestStatus(int candidateId, string testName)
+        {
+            var test = _context.CandidateTests
+                .Where(s => s.Title == testName);
+            var testModel = new CandidateTestModel();
+            foreach (var t in test)
+            {
+                testModel = t;
+            }
+
+            return new CandidateTestStatus(testModel);
         }
     }
 }
