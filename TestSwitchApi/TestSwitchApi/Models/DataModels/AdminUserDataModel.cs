@@ -10,7 +10,6 @@ namespace TestSwitchApi.Models.DataModels
         public int Id { get; set; }
         public string Email { get; set; }
         public string HashedPassword { get; set; }
-        public string PasswordSalt { get; set; }
-
+        public byte[] PasswordSalt { get; set; }
     }
 }
