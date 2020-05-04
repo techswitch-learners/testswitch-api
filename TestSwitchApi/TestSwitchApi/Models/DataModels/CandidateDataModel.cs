@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace TestSwitchApi.Models.DataModels
 {
@@ -12,5 +14,8 @@ namespace TestSwitchApi.Models.DataModels
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Guid { get; set; }
+
+        [JsonIgnore]
+        public List<CandidateTestModel> CandidateTests { get; set; }
     }
 }
