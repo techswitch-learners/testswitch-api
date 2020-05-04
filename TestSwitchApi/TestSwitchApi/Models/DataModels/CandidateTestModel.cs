@@ -24,5 +24,7 @@ namespace TestSwitchApi.Models.DataModels
         public string? CandidateAnswer { get; set; }
         public DateTime? StartTime { get; set; }
         public DateTime? EndTime { get; set; }
+
+        public CandidateDataModel Candidate { get; set; }
     }
 }
