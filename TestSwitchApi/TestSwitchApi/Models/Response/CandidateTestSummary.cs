@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity.Infrastructure.Design;
 using TestSwitchApi.Models.DataModels;
 
 namespace TestSwitchApi.Models.Response
