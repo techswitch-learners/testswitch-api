@@ -35,10 +35,8 @@ namespace TestSwitchApi.Tests
         [Test]
         public void CheckSaltIsCorrectLength()
         {
-            _passwordService
-                .GenerateSalt()
-                .Should()
-                .HaveLength(24);
+            byte[] testSalt = _passwordService.GenerateSalt();
+            testSalt.Should().HaveCount(16);
         }
 
         [Test]
