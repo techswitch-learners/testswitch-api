@@ -31,7 +31,7 @@ namespace TestSwitchApi
             IAdminRepo adminRepo = new AdminRepo(context);
             if (!context.AdminUsers.Any())
             {
-                string newAdminEmail = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_EMAIL")?.ToLower();
+                string newAdminEmail = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_EMAIL");
                 string newAdminPassword = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_PASSWORD");
                 adminRepo.CreateNewAdminUser(newAdminEmail, newAdminPassword);
             }

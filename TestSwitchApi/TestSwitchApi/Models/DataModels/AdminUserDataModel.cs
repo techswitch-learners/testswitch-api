@@ -9,11 +9,7 @@ namespace TestSwitchApi.Models.DataModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public string Email
-        {
-            get => Email;
-            set => value.ToLower();
-        }
+        public string Email { get; set; }
 
         public string HashedPassword { get; set; }
         public byte[] PasswordSalt { get; set; }
