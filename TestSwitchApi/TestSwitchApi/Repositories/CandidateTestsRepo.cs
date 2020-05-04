@@ -33,9 +33,20 @@ namespace TestSwitchApi.Repositories
                 result.TestAnswer = testSubmissionModel.TestAnswer;
                 result.EndTime = DateTime.Now;
                 _context.SaveChanges();
+                return result;
             }
-
-            return result;
+            else
+            {
+                var insertTest = _context.CandidateTests.Add(new CandidateTestModel()
+                {
+                    CandidateId = candidateId,
+                    TestId = testSubmissionModel.TestId,
+                    TestAnswer = testSubmissionModel.TestAnswer,
+                    EndTime = DateTime.Now,
+                });
+                _context.SaveChanges();
+                return insertTest.Entity;
+            }
         }
     }
 }
