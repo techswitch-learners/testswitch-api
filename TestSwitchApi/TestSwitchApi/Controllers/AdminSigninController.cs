@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Npgsql.TypeHandlers;
 using TestSwitchApi.Models.Request;
 using TestSwitchApi.Repositories;
 using TestSwitchApi.Services;
@@ -19,7 +20,7 @@ namespace TestSwitchApi.Controllers
         }
 
         [HttpPost("")]
-        public ActionResult<string> AttemptLogin([FromForm] LoginRequest loginRequest)
+        public ActionResult<System.Guid> AttemptLogin([FromForm] LoginRequest loginRequest)
         {
             if (!ModelState.IsValid)
             {

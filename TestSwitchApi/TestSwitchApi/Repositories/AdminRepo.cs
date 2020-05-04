@@ -24,7 +24,7 @@ namespace TestSwitchApi.Repositories
         public AdminUserSession CreateAndStoreSession(int adminUserId)
         {
             var newSession = new AdminUserSession
-                { Id = Guid.NewGuid().ToString(), AdminUserID = adminUserId };
+                { Id = Guid.NewGuid(), AdminUserID = adminUserId };
             _context.AdminUserSessions.Add(newSession);
             _context.SaveChanges();
             return _context.AdminUserSessions.SingleOrDefault(s => s.Id == newSession.Id);
