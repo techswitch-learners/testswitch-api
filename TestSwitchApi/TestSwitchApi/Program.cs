@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TestSwitchApi.Models.ApiModels;
-using TestSwitchApi.Models.DataModels;
-using TestSwitchApi.Services;
+using TestSwitchApi.Repositories;
 
 namespace TestSwitchApi
 {
@@ -30,24 +28,12 @@ namespace TestSwitchApi
 
             var context = services.GetRequiredService<TestSwitchDbContext>();
             context.Database.EnsureCreated();
+            IAdminRepo adminRepo = new AdminRepo(context);
             if (!context.AdminUsers.Any())
             {
-                var passwordService = new PasswordService();
                 string newAdminEmail = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_EMAIL");
                 string newAdminPassword = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_PASSWORD");
-                byte[] newAdminPasswordSalt = passwordService.GenerateSalt();
-                string hashedPassword =
-                    passwordService.HashPassword(
-                        newAdminPassword,
-                        newAdminPasswordSalt);
-                var newAdminUser = new AdminUserDataModel()
-                {
-                    Email = newAdminEmail,
-                    PasswordSalt = newAdminPasswordSalt,
-                    HashedPassword = hashedPassword,
-                };
-                context.AdminUsers.Add(newAdminUser);
-                context.SaveChanges();
+                adminRepo.CreateNewAdminUser(newAdminEmail, newAdminPassword);
             }
         }
     }
