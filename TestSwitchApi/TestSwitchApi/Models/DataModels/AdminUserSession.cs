@@ -9,13 +9,13 @@ namespace TestSwitchApi.Models.DataModels
         [Key]
         public string Id { get; set; }
         public int AdminUserID { get; set; }
-        public string SessionStart { get; set; }
-        public string SessionEnd { get; set; }
+        public DateTime SessionStart { get; set; }
+        public DateTime SessionEnd { get; set; }
 
         public AdminUserSession()
         {
-            SessionStart = DateTime.Now.ToLongDateString();
-            SessionEnd = DateTime.Now.AddDays(1).ToLongDateString();
+            SessionStart = DateTime.Now;
+            SessionEnd = DateTime.Now.AddDays(1);
         }
     }
 }
