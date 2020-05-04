@@ -26,18 +26,20 @@ namespace TestSwitchApi.Repositories
 
         public CandidateTestModel AddTestSubmission(int candidateId, AddTestSubmissionRequestModel testSubmissionModel)
         {
-            var result = _context.CandidateTests
+            var result = new CandidateTestModel();
+            result = _context.CandidateTests
                 .SingleOrDefault(s => s.CandidateId == candidateId && s.TestId == testSubmissionModel.TestId);
 
             if (result != null)
             {
-                CandidateId = candidateId,
-                TestId = testSubmissionModel.TestId,
-                CandidateAnswer = testSubmissionModel.CandidateAnswer,
-                EndTime = DateTime.Now,
-            });
+                result.CandidateId = candidateId;
+                result.TestId = testSubmissionModel.TestId;
+                result.CandidateAnswer = testSubmissionModel.CandidateAnswer;
+                result.EndTime = DateTime.Now;
+            }
+
             _context.SaveChanges();
-            return insertTest.Entity;
+            return result;
         }
 
         public CandidateTestStatus GetCandidateTestStatus(int candidateId, string testName)
