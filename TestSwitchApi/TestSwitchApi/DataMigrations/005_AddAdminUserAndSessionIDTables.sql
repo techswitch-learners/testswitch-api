@@ -1,15 +1,15 @@
 ﻿CREATE TABLE public."AdminUsers" (
-                                     "Id" BIGSERIAL NOT NULL PRIMARY KEY UNIQUE,
+                                     "Id" SERIAL PRIMARY KEY,
                                      "Email" VARCHAR(256) NOT NULL UNIQUE,
                                      "HashedPassword" VARCHAR(128) NOT NULL,
-                                     "PasswordSalt" VARCHAR(24) NOT NULL
+                                     "PasswordSalt" BYTEA NOT NULL
 );
 
 CREATE TABLE public."AdminUserSessions"(
-                                        "Id" VARCHAR(128) NOT NULL PRIMARY KEY UNIQUE,
-                                        "AdminUserID" BIGINT NOT NULL,
-                                        "SessionStart" VARCHAR(128) NOT NULL,
-                                        "SessionEnd" VARCHAR(128) NOT NULL
+                                        "Id" VARCHAR(128) NOT NULL PRIMARY KEY,
+                                        "AdminUserID" INT NOT NULL,
+                                        "SessionStart" TIMESTAMP NOT NULL,
+                                        "SessionEnd" TIMESTAMP NOT NULL
 );
 
 ALTER TABLE ONLY public."AdminUserSessions"
