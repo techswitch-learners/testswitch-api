@@ -29,7 +29,7 @@ namespace TestSwitchApi.Repositories
             {
                 CandidateId = candidateId,
                 TestId = testSubmissionModel.TestId,
-                TestAnswer = testSubmissionModel.TestAnswer,
+                CandidateAnswer = testSubmissionModel.CandidateAnswer,
                 EndTime = DateTime.Now,
             });
             _context.SaveChanges();
