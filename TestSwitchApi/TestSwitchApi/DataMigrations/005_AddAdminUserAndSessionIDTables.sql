@@ -6,7 +6,7 @@
 );
 
 CREATE TABLE public."AdminUserSessions"(
-                                        "Id" uuid NOT NULL PRIMARY KEY,
+                                        "Id" UUID NOT NULL PRIMARY KEY,
                                         "AdminUserID" INT NOT NULL,
                                         "SessionStart" TIMESTAMP NOT NULL,
                                         "SessionEnd" TIMESTAMP NOT NULL
