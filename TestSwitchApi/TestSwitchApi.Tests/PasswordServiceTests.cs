@@ -8,24 +8,6 @@ namespace TestSwitchApi.Tests
     public class PasswordServiceTests
     {
         private PasswordService _passwordService;
-
-        private string GenerateRandomPassword(
-            int size = 15,
-            string allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890")
-        {
-            char[] chars = allowedCharacters.ToCharArray();
-            var crypto = System.Security.Cryptography.RandomNumberGenerator.Create();
-            byte[] data = new byte[size];
-            crypto.GetBytes(data);
-            var result = new StringBuilder(size);
-            foreach (byte b in data)
-            {
-                result.Append(chars[b % (chars.Length - 1)]);
-            }
-
-            return result.ToString();
-        }
-
         [SetUp]
         public void SetUp()
         {
@@ -42,8 +24,9 @@ namespace TestSwitchApi.Tests
         [Test]
         public void CheckHashedPasswordIsCorrectLength()
         {
+            string testPassword = "hereIsANiceTestPassword!$%";
             _passwordService.HashPassword(
-                    GenerateRandomPassword(),
+                    testPassword,
                     _passwordService.GenerateSalt())
                 .Should()
                 .HaveLength(44);
@@ -52,7 +35,7 @@ namespace TestSwitchApi.Tests
         [Test]
         public void CheckIsLoginPasswordValid()
         {
-            var testPassword = GenerateRandomPassword();
+            var testPassword = "hereIsAnotherNicerTestPassword!$%";
             var testSalt = _passwordService.GenerateSalt();
             var testHashedPassword = _passwordService.HashPassword(testPassword, testSalt);
             _passwordService
