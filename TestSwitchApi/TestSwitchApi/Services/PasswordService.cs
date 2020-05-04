@@ -6,30 +6,29 @@ namespace TestSwitchApi.Services
 {
     public class PasswordService : IPasswordService
     {
-        public string GenerateSalt()
+        public byte[] GenerateSalt()
         {
-            byte[] saltBytes = new byte[128 / 8];
+            byte[] salt = new byte[128 / 8];
             using (var rng = RandomNumberGenerator.Create())
             {
-                rng.GetBytes(saltBytes);
+                rng.GetBytes(salt);
             }
 
-            string salt = Convert.ToBase64String(saltBytes);
             return salt;
         }
 
-        public string HashPassword(string password, string salt)
+        public string HashPassword(string password, byte[] salt)
         {
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
                 password: password,
-                salt: Convert.FromBase64String(salt),
+                salt: salt,
                 prf: KeyDerivationPrf.HMACSHA256,
                 iterationCount: 5000,
                 numBytesRequested: 256 / 8));
             return hashed;
         }
 
-        public bool IsLoginPasswordValid(string passwordInput, string saltToBeCompared, string hashedPasswordToBeCompared)
+        public bool IsLoginPasswordValid(string passwordInput, byte[] saltToBeCompared, string hashedPasswordToBeCompared)
         {
             var hashedPasswordInput = HashPassword(passwordInput, saltToBeCompared);
             return hashedPasswordInput == hashedPasswordToBeCompared;

@@ -2,8 +2,8 @@
 {
     public interface IPasswordService
     {
-        string GenerateSalt();
-        string HashPassword(string password, string salt);
-        bool IsLoginPasswordValid(string passwordInput, string saltToBeCompared, string hashedPasswordsaltToBeCompared);
+        byte[] GenerateSalt();
+        string HashPassword(string password, byte[] salt);
+        bool IsLoginPasswordValid(string passwordInput, byte[] saltToBeCompared, string hashedPasswordsaltToBeCompared);
     }
 }
