@@ -21,7 +21,7 @@ namespace TestSwitchApi.Repositories
             var salt = _passwordService.GenerateSalt();
             var newAdminUser = new AdminUserDataModel()
             {
-                Email = email.ToLower(),
+                Email = email,
                 PasswordSalt = salt,
                 HashedPassword = _passwordService.HashPassword(password, salt),
             };
