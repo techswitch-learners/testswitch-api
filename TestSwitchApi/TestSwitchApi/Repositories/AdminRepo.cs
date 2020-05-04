@@ -16,7 +16,7 @@ namespace TestSwitchApi.Repositories
 
         public AdminUserDataModel GetAdminByEmail(string email)
         {
-            return _context.AdminUsers.SingleOrDefault(c => c.Email == email);
+            return _context.AdminUsers.SingleOrDefault(c => c.Email.ToLower() == email.ToLower());
         }
 
         public AdminUserSession CreateAndStoreSession(int adminUserId)
