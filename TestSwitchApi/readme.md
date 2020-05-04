@@ -16,7 +16,7 @@ This is the API for the TestSwitch.
 2. Ensure the port specified in the connection string is the one your database is running on.
 
 ### Creating an Admin user
-1. On startup the Program looks for two environment variables called DEFAULTADMINEMAIL and DEFAULTADMINPASSWORD to create an admin user if no admin user already exists. If you are starting the program for the first time then  
+1. On startup the Program looks for two environment variables called DEFAULT_ADMIN_EMAIL and DEFAULT_ADMIN_PASSWORD to create an admin user if no admin user already exists. If you are starting the program for the first time then  
 
 ## Linting
 We're using StyleCop to lint the project.  

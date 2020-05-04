@@ -33,8 +33,8 @@ namespace TestSwitchApi
             if (!context.AdminUsers.Any())
             {
                 var passwordService = new PasswordService();
-                string newAdminEmail = Environment.GetEnvironmentVariable("DEFAULTADMINEMAIL");
-                string newAdminPassword = Environment.GetEnvironmentVariable("DEFAULTADMINPASSWORD");
+                string newAdminEmail = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_EMAIL");
+                string newAdminPassword = Environment.GetEnvironmentVariable("DEFAULT_ADMIN_PASSWORD");
                 byte[] newAdminPasswordSalt = passwordService.GenerateSalt();
                 string hashedPassword =
                     passwordService.HashPassword(
