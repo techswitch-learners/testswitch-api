@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.Cryptography;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using TestSwitchApi.Models.ApiModels;
 using TestSwitchApi.Models.DataModels;
 
