@@ -29,17 +29,10 @@ namespace TestSwitchApi.Controllers
             }
 
             var candidate = _candidates.GetCandidateByGuid(tokenId);
+
             if (candidate!=null)
             {
-                try
-                {
-                    _submissions.AddTestSubmission(candidate.Id, newSubmission);
-                    return StatusCode(200);
-                }
-                catch
-                {
-                    return StatusCode(500);
-                }
+                return _submissions.AddTestSubmission(candidate.Id, newSubmission);
             }
 
             return StatusCode(401, "Invalid token");
