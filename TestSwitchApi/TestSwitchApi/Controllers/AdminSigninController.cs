@@ -41,10 +41,6 @@ namespace TestSwitchApi.Controllers
             }
 
             var newSession = _adminRepo.CreateAndStoreSession(adminUser.Id);
-            if (newSession == null)
-            {
-                return Unauthorized("Database error");
-            }
 
             return newSession.Id;
         }
