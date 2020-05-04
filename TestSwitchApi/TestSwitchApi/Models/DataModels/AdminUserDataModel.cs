@@ -13,7 +13,7 @@ namespace TestSwitchApi.Models.DataModels
 
         public string Email
         {
-            get => Email;
+            get => Email.ToLower();
             set => _email = value.ToLower();
         }
 
