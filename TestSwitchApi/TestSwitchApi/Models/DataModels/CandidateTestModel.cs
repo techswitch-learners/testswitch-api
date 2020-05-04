@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestSwitchApi.Models.DataModels
 {
@@ -13,7 +12,7 @@ namespace TestSwitchApi.Models.DataModels
         public string TestResult { get; set; }
         public string TestAnswer { get; set; }
 
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime? StartTime { get; set; }
+        public DateTime? EndTime { get; set; }
     }
 }

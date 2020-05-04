@@ -4,7 +4,6 @@ using System.Linq;
 using TestSwitchApi.Models.ApiModels;
 using TestSwitchApi.Models.DataModels;
 using TestSwitchApi.Models.Request;
-using TestSwitchApi.Models.Response;
 
 namespace TestSwitchApi.Repositories
 {
