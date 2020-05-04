@@ -1,4 +1,6 @@
-﻿using TestSwitchApi.Models.DataModels;
+﻿using System;
+using System.Data.Entity.Infrastructure.Design;
+using TestSwitchApi.Models.DataModels;
 
 namespace TestSwitchApi.Models.Response
 {
@@ -7,14 +9,13 @@ namespace TestSwitchApi.Models.Response
         public int TestId { get; set; }
         public string CandidateAnswer { get; set; }
 
-        public CandidateTestSummary()
-        {
-        }
+        public TimeSpan? TimeTaken { get; set; }
 
         public CandidateTestSummary(CandidateTestModel candidateTest)
         {
             TestId = candidateTest.TestId;
             CandidateAnswer = candidateTest.CandidateAnswer;
+            TimeTaken = candidateTest.EndTime - candidateTest.StartTime;
         }
     }
 }
