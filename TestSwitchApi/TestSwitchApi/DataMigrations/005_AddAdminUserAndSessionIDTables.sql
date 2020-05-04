@@ -6,11 +6,11 @@
 );
 
 CREATE TABLE public."AdminUserSessions"(
-                                        "Id" VARCHAR(128) NOT NULL PRIMARY KEY,
+                                        "Id" uuid NOT NULL PRIMARY KEY,
                                         "AdminUserID" INT NOT NULL,
                                         "SessionStart" TIMESTAMP NOT NULL,
                                         "SessionEnd" TIMESTAMP NOT NULL
 );
 
 ALTER TABLE ONLY public."AdminUserSessions"
-    ADD CONSTRAINT AdminUserID_fk FOREIGN KEY ("AdminUserID") REFERENCES public."AdminUsers"("Id") NOT VALID;
+    ADD CONSTRAINT AdminUserID_fk FOREIGN KEY ("AdminUserID") REFERENCES public."AdminUsers"("Id");
