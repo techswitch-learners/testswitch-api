@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestSwitchApi.Models.Request;
 using TestSwitchApi.Repositories;
@@ -15,6 +17,7 @@ namespace TestSwitchApi.Controllers
         private readonly ICookieService _cookieService;
 
         public AdminSigninController(IAdminRepo adminRepo, IPasswordService passwordService, ICookieService cookieService)
+
         {
             _adminRepo = adminRepo;
             _passwordService = passwordService;
@@ -22,7 +25,7 @@ namespace TestSwitchApi.Controllers
         }
 
         [HttpPost("")]
-        public ActionResult<Cookie> AttemptLogin([FromForm] LoginRequest loginRequest)
+        public ActionResult<string> AttemptLogin([FromForm] LoginRequest loginRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -43,8 +46,9 @@ namespace TestSwitchApi.Controllers
             }
 
             var newSession = _adminRepo.CreateAndStoreSession(adminUser.Id);
-            var cookieResponse = _cookieService.MakeNewLoginCookie(newSession.Id, newSession.SessionEnd);
-            return cookieResponse;
+            _cookieService.MakeNewLoginCookie(newSession.Id, HttpContext);
+
+            return "successful login. Id: " + newSession.Id;
         }
     }
 }
