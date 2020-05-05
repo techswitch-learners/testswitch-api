@@ -37,12 +37,15 @@ namespace TestSwitchApi
             });
             services.AddTransient<ICandidatesRepo, CandidatesRepo>();
             services.AddTransient<ICandidateTestsRepo, CandidateTestsRepo>();
+            services.AddTransient<IAdminRepo, AdminRepo>();
+            services.AddTransient<IPasswordService, PasswordService>();
             services.AddCors(options =>
                 {
                     options.AddPolicy(
                         "AllowOrigin",
                         builder => builder.WithOrigins(
-                            "http://localhost:3001", "http://localhost:3000", "https://testswitch-candidate-staging.herokuapp.com", "https://testswitch-candidate.herokuapp.com", "https://testswitch-admin-staging.herokuapp.com", "https://testswitch-admin.herokuapp.com"));
+                            "http://localhost:3001", "http://localhost:3000", "https://testswitch-candidate-staging.herokuapp.com", "https://testswitch-candidate.herokuapp.com", "https://testswitch-admin-staging.herokuapp.com", "https://testswitch-admin.herokuapp.com")
+                            .AllowAnyHeader());
                 });
             if (env == "Development")
             {

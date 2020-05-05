@@ -15,6 +15,9 @@ This is the API for the TestSwitch.
 1. Insert the database password into the connection string in appsettings.json.
 2. Ensure the port specified in the connection string is the one your database is running on.
 
+### Creating an Admin user
+1. On startup the Program looks for two environment variables called DEFAULT_ADMIN_EMAIL and DEFAULT_ADMIN_PASSWORD to create an admin user if no admin user already exists. If you are starting the program for the first time then  
+
 ## Linting
 We're using StyleCop to lint the project.  
 Some StyleCop rules are disabled in the .ruleset files in each project.
