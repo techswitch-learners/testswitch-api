@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 namespace TestSwitchApi.Services
@@ -11,7 +13,7 @@ namespace TestSwitchApi.Services
              var cookieOptions = new CookieOptions
              {
                  Expires = new DateTimeOffset(DateTime.Now.AddDays(1)),
-                 Domain = "https://testswitch-admin-staging.herokuapp.com",
+                 Domain = Environment.GetEnvironmentVariable("FRONT_END_URL"),
                  HttpOnly = false,
                  Secure = true,
                  SameSite = SameSiteMode.Lax,
