@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Npgsql.TypeHandlers;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using TestSwitchApi.Models.Request;
 using TestSwitchApi.Repositories;
 using TestSwitchApi.Services;
@@ -12,15 +12,17 @@ namespace TestSwitchApi.Controllers
     {
         private readonly IAdminRepo _adminRepo;
         private readonly IPasswordService _passwordService;
+        private readonly ICookieService _cookieService;
 
-        public AdminSigninController(IAdminRepo adminRepo, IPasswordService passwordService)
+        public AdminSigninController(IAdminRepo adminRepo, IPasswordService passwordService, ICookieService cookieService)
         {
             _adminRepo = adminRepo;
             _passwordService = passwordService;
+            _cookieService = cookieService;
         }
 
         [HttpPost("")]
-        public ActionResult<System.Guid> AttemptLogin([FromForm] LoginRequest loginRequest)
+        public ActionResult<Cookie> AttemptLogin([FromForm] LoginRequest loginRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -41,8 +43,8 @@ namespace TestSwitchApi.Controllers
             }
 
             var newSession = _adminRepo.CreateAndStoreSession(adminUser.Id);
-
-            return newSession.Id;
+            var cookieResponse = _cookieService.MakeNewLoginCookie(newSession.Id, newSession.SessionEnd);
+            return cookieResponse;
         }
     }
 }
