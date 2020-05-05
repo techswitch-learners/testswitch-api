@@ -17,8 +17,9 @@ namespace TestSwitchApi.Controllers
     {
         private readonly ICandidatesRepo _candidates;
         private readonly ICandidateTestsRepo _submissions;
+        private readonly ISessionService _sessionService;
 
-        public CandidateController(ICandidatesRepo candidates, ICandidateTestsRepo submissions)
+        public CandidateController(ICandidatesRepo candidates, ICandidateTestsRepo submissions,ISessionService sessionService)
         {
             _candidates = candidates;
             _submissions = submissions;

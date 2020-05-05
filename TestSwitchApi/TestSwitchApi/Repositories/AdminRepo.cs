@@ -42,5 +42,10 @@ namespace TestSwitchApi.Repositories
             _context.SaveChanges();
             return _context.AdminUserSessions.SingleOrDefault(s => s.Id == newSession.Id);
         }
+
+        public AdminUserSession GetSession(string sessionId)
+        {
+            return _context.AdminUserSessions.SingleOrDefault(s=>s.Id.ToString() == sessionId);
+        }
     }
 }
