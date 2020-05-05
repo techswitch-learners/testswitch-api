@@ -50,6 +50,21 @@ namespace TestSwitchApi.Repositories
                 LastName = candidateRequest.LastName,
                 Email = candidateRequest.Email,
                 Guid = Guid.NewGuid().ToString(),
+                CandidateTests = new List<CandidateTestModel>
+                {
+                    new CandidateTestModel
+                    {
+                        TestId = 1,
+                    },
+                    new CandidateTestModel
+                    {
+                        TestId = 2,
+                    },
+                    new CandidateTestModel
+                    {
+                        TestId = 3,
+                    },
+                },
             });
             _context.SaveChanges();
             return response.Entity;
