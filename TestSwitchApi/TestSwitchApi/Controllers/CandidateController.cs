@@ -32,11 +32,11 @@ namespace TestSwitchApi.Controllers
         [HttpGet("")]
         public ActionResult<CandidateListResponse> GetCandidates([FromQuery] PageRequest pageRequest)
         {
-            // var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
-            // if (!sessionIdValid)
-            // {
-            //     return Unauthorized();
-            // }
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
+            if (!sessionIdValid)
+            {
+                return Unauthorized();
+            }
 
             var candidates = _candidates.GetAllCandidates(pageRequest);
             var candidateCount = _candidates.Count(pageRequest);
@@ -47,11 +47,11 @@ namespace TestSwitchApi.Controllers
         [HttpGet("{candidateId}")]
         public ActionResult<CandidateTestResponseModel> GetCandidateTestSubmissions(int candidateId)
         {
-            // var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
-            // if (!sessionIdValid)
-            // {
-            //     return Unauthorized();
-            // }
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
+            if (!sessionIdValid)
+            {
+                return Unauthorized();
+            }
 
             var candidate = _candidates.GetCandidateById(candidateId);
 
@@ -62,11 +62,11 @@ namespace TestSwitchApi.Controllers
         [HttpPost("create")]
         public ActionResult<CandidateDataModel> RegisterCandidate([FromForm] CandidateRequest candidateRequest)
         {
-            // var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
-            // if (!sessionIdValid)
-            // {
-            //     return Unauthorized();
-            // }
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
+            if (!sessionIdValid)
+            {
+                return Unauthorized();
+            }
 
             if (!ModelState.IsValid)
             {
