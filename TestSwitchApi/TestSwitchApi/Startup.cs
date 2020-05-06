@@ -39,7 +39,8 @@ namespace TestSwitchApi
             services.AddTransient<ICandidateTestsRepo, CandidateTestsRepo>();
             services.AddTransient<IAdminRepo, AdminRepo>();
             services.AddTransient<IPasswordService, PasswordService>();
-            services.AddTransient<ICookieService, CookieService>();
+            services.AddTransient<ISessionService, SessionService>();
+
             services.AddCors(options =>
                 {
                     options.AddPolicy(

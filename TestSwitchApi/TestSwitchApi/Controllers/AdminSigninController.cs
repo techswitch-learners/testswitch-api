@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Net;
+using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
 using TestSwitchApi.Models.Request;
+using TestSwitchApi.Models.Response;
 using TestSwitchApi.Repositories;
 using TestSwitchApi.Services;
 
@@ -14,18 +17,15 @@ namespace TestSwitchApi.Controllers
     {
         private readonly IAdminRepo _adminRepo;
         private readonly IPasswordService _passwordService;
-        private readonly ICookieService _cookieService;
 
-        public AdminSigninController(IAdminRepo adminRepo, IPasswordService passwordService, ICookieService cookieService)
-
+        public AdminSigninController(IAdminRepo adminRepo, IPasswordService passwordService)
         {
             _adminRepo = adminRepo;
             _passwordService = passwordService;
-            _cookieService = cookieService;
         }
 
         [HttpPost("")]
-        public ActionResult<string> AttemptLogin([FromForm] LoginRequest loginRequest)
+        public ActionResult<SessionResponse> AttemptLogin([FromForm] LoginRequest loginRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -46,9 +46,8 @@ namespace TestSwitchApi.Controllers
             }
 
             var newSession = _adminRepo.CreateAndStoreSession(adminUser.Id);
-            _cookieService.MakeNewLoginCookie(newSession.Id, HttpContext);
 
-            return "successful login. Id: " + newSession.Id;
+            return new SessionResponse(newSession.Id.ToString());
         }
     }
 }

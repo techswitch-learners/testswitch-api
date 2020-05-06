@@ -7,5 +7,6 @@ namespace TestSwitchApi.Repositories
         void CreateNewAdminUser(string email, string password);
         AdminUserDataModel GetAdminByEmail(string email);
         AdminUserSession CreateAndStoreSession(int adminId);
+        AdminUserSession GetSession(string sessionId);
     }
 }
