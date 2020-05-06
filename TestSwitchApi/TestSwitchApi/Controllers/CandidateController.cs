@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using TestSwitchApi.Models.DataModels;
@@ -20,7 +21,8 @@ namespace TestSwitchApi.Controllers
         private readonly ISessionService _sessionService;
         private readonly IAdminRepo _adminRepo;
 
-        public CandidateController(ICandidatesRepo candidates, ICandidateTestsRepo submissions,ISessionService sessionService,IAdminRepo adminRepo)
+        public CandidateController(ICandidatesRepo candidates, ICandidateTestsRepo submissions,
+            ISessionService sessionService, IAdminRepo adminRepo)
         {
             _candidates = candidates;
             _submissions = submissions;
@@ -31,22 +33,22 @@ namespace TestSwitchApi.Controllers
         [HttpGet("")]
         public ActionResult<CandidateListResponse> GetCandidates([FromQuery] PageRequest pageRequest)
         {
-            if(!HttpContext.Request.Cookies.ContainsKey("sessionId"))
+            if (!HttpContext.Request.Cookies.ContainsKey("sessionId"))
             {
                 return StatusCode(401, "Unauthorised");
             }
             else
             {
-                var sessionId = HttpContext.Request.Cookies["sessionId"];
+                var sessionId = HttpContext.Request.Headers["sessionId"];
                 var session = _adminRepo.GetSession(sessionId);
                 if (session != null)
                 {
-                    if (_sessionService.IsValidSession(session.SessionEnd))
-                    {
-                        var candidates = _candidates.GetAllCandidates(pageRequest);
-                        var candidateCount = _candidates.Count(pageRequest);
-                        return new CandidateListResponse(pageRequest, candidates, candidateCount);
-                    }
+                    // if (_sessionService.SessionInDate(session.SessionEnd))
+                    // {
+                    var candidates = _candidates.GetAllCandidates(pageRequest);
+                    var candidateCount = _candidates.Count(pageRequest);
+                    return new CandidateListResponse(pageRequest, candidates, candidateCount);
+                    // }
                 }
             }
 
@@ -71,6 +73,29 @@ namespace TestSwitchApi.Controllers
 
             var newCandidate = _candidates.Register(candidateRequest);
             return newCandidate;
+        }
+
+        [HttpGet("test-session")]
+        public ActionResult<string> CheckSessionFromCookie()
+        {
+            if (!HttpContext.Request.Headers.ContainsKey("Session-Id"))
+            {
+                return "can't find key";
+            }
+
+            var sessionId = HttpContext.Request.Headers["Session-Id"];
+            var session = _adminRepo.GetSession(sessionId);
+            if (session == null)
+            {
+                return "session not in DB";
+            }
+
+            if (!_sessionService.SessionInDate(session.SessionEnd))
+            {
+                return "Session ID out of date";
+            }
+
+            return "SessionID valid.";
         }
     }
 }
