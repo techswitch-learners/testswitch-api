@@ -78,24 +78,13 @@ namespace TestSwitchApi.Controllers
         [HttpGet("test-session")]
         public ActionResult<string> CheckSessionFromCookie()
         {
-            if (!HttpContext.Request.Headers.ContainsKey("Session-Id"))
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext, _adminRepo);
+            if (!sessionIdValid)
             {
-                return "can't find key";
+                return Unauthorized();
             }
 
-            var sessionId = HttpContext.Request.Headers["Session-Id"];
-            var session = _adminRepo.GetSession(sessionId);
-            if (session == null)
-            {
-                return "session not in DB";
-            }
-
-            if (!_sessionService.SessionInDate(session.SessionEnd))
-            {
-                return "Session ID out of date";
-            }
-
-            return "SessionID valid.";
+            return "session valid.";
         }
     }
 }
