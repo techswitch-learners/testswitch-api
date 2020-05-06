@@ -6,7 +6,7 @@ namespace TestSwitchApi.Services
 {
     public class SessionService : ISessionService
     {
-        public bool SessionInDate(DateTime SessionEndTime)
+        private bool SessionInDate(DateTime SessionEndTime)
         {
             return SessionEndTime > DateTime.Now ? true : false;
         }
