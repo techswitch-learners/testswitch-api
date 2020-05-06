@@ -6,6 +6,6 @@ namespace TestSwitchApi.Services
 {
     public interface ISessionService
     {
-        public bool RequestHasValidSessionId(HttpContext context, IAdminRepo adminRepo);
+        public bool RequestHasValidSessionId(HttpContext context);
     }
 }

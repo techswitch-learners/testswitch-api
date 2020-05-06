@@ -6,12 +6,14 @@ namespace TestSwitchApi.Services
 {
     public class SessionService : ISessionService
     {
-        private bool SessionInDate(DateTime SessionEndTime)
+        private readonly IAdminRepo _adminRepo;
+
+        public SessionService(IAdminRepo adminRepo)
         {
-            return SessionEndTime > DateTime.Now ? true : false;
+            _adminRepo = adminRepo;
         }
 
-        public bool RequestHasValidSessionId(HttpContext context, IAdminRepo adminRepo)
+        public bool RequestHasValidSessionId(HttpContext context)
         {
             if (!context.Request.Headers.ContainsKey("Session-Id"))
             {
@@ -19,7 +21,7 @@ namespace TestSwitchApi.Services
             }
 
             var sessionId = context.Request.Headers["Session-Id"];
-            var session = adminRepo.GetSession(sessionId);
+            var session = _adminRepo.GetSession(sessionId);
             if (session == null)
             {
                 return false;
@@ -31,6 +33,11 @@ namespace TestSwitchApi.Services
             }
 
             return true;
+        }
+
+        private bool SessionInDate(DateTime SessionEndTime)
+        {
+            return SessionEndTime > DateTime.Now ? true : false;
         }
     }
 }

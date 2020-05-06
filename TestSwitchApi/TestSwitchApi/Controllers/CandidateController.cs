@@ -32,7 +32,7 @@ namespace TestSwitchApi.Controllers
         [HttpGet("")]
         public ActionResult<CandidateListResponse> GetCandidates([FromQuery] PageRequest pageRequest)
         {
-            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext, _adminRepo);
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
             if (!sessionIdValid)
             {
                 return Unauthorized();
@@ -47,7 +47,7 @@ namespace TestSwitchApi.Controllers
         [HttpGet("{candidateId}")]
         public ActionResult<CandidateTestResponseModel> GetCandidateTestSubmissions(int candidateId)
         {
-            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext, _adminRepo);
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
             if (!sessionIdValid)
             {
                 return Unauthorized();
@@ -62,7 +62,7 @@ namespace TestSwitchApi.Controllers
         [HttpPost("create")]
         public ActionResult<CandidateDataModel> RegisterCandidate([FromForm] CandidateRequest candidateRequest)
         {
-            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext, _adminRepo);
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext);
             if (!sessionIdValid)
             {
                 return Unauthorized();
