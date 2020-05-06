@@ -21,8 +21,7 @@ namespace TestSwitchApi.Controllers
         private readonly ISessionService _sessionService;
         private readonly IAdminRepo _adminRepo;
 
-        public CandidateController(ICandidatesRepo candidates, ICandidateTestsRepo submissions,
-            ISessionService sessionService, IAdminRepo adminRepo)
+        public CandidateController(ICandidatesRepo candidates, ICandidateTestsRepo submissions, ISessionService sessionService, IAdminRepo adminRepo)
         {
             _candidates = candidates;
             _submissions = submissions;
@@ -48,6 +47,12 @@ namespace TestSwitchApi.Controllers
         [HttpGet("{candidateId}")]
         public ActionResult<CandidateTestResponseModel> GetCandidateTestSubmissions(int candidateId)
         {
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext, _adminRepo);
+            if (!sessionIdValid)
+            {
+                return Unauthorized();
+            }
+
             var candidate = _candidates.GetCandidateById(candidateId);
 
             var submissions = _submissions.GetSubmissionsByCandidateId(candidateId);
@@ -57,6 +62,12 @@ namespace TestSwitchApi.Controllers
         [HttpPost("create")]
         public ActionResult<CandidateDataModel> RegisterCandidate([FromForm] CandidateRequest candidateRequest)
         {
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext, _adminRepo);
+            if (!sessionIdValid)
+            {
+                return Unauthorized();
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -64,18 +75,6 @@ namespace TestSwitchApi.Controllers
 
             var newCandidate = _candidates.Register(candidateRequest);
             return newCandidate;
-        }
-
-        [HttpGet("test-session")]
-        public ActionResult<string> CheckSessionFromCookie()
-        {
-            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext, _adminRepo);
-            if (!sessionIdValid)
-            {
-                return Unauthorized();
-            }
-
-            return "session valid.";
         }
     }
 }
