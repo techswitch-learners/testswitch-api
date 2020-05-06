@@ -18,19 +18,39 @@ namespace TestSwitchApi.Controllers
         private readonly ICandidatesRepo _candidates;
         private readonly ICandidateTestsRepo _submissions;
         private readonly ISessionService _sessionService;
+        private readonly IAdminRepo _adminRepo;
 
-        public CandidateController(ICandidatesRepo candidates, ICandidateTestsRepo submissions,ISessionService sessionService)
+        public CandidateController(ICandidatesRepo candidates, ICandidateTestsRepo submissions,ISessionService sessionService,IAdminRepo adminRepo)
         {
             _candidates = candidates;
             _submissions = submissions;
+            _sessionService = sessionService;
+            _adminRepo = adminRepo;
         }
 
         [HttpGet("")]
         public ActionResult<CandidateListResponse> GetCandidates([FromQuery] PageRequest pageRequest)
         {
-            var candidates = _candidates.GetAllCandidates(pageRequest);
-            var candidateCount = _candidates.Count(pageRequest);
-            return new CandidateListResponse(pageRequest, candidates, candidateCount);
+            if(!HttpContext.Request.Cookies.ContainsKey("sessionId"))
+            {
+                return StatusCode(401, "Unauthorised");
+            }
+            else
+            {
+                var sessionId = HttpContext.Request.Cookies["sessionId"];
+                var session = _adminRepo.GetSession(sessionId);
+                if (session != null)
+                {
+                    if (_sessionService.IsValidSession(session.SessionEnd))
+                    {
+                        var candidates = _candidates.GetAllCandidates(pageRequest);
+                        var candidateCount = _candidates.Count(pageRequest);
+                        return new CandidateListResponse(pageRequest, candidates, candidateCount);
+                    }
+                }
+            }
+
+            return StatusCode(401, "Unauthorised");
         }
 
         [HttpGet("{candidateId}")]
