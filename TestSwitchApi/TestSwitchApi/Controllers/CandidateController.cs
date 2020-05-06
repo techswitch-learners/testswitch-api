@@ -33,6 +33,12 @@ namespace TestSwitchApi.Controllers
         [HttpGet("")]
         public ActionResult<CandidateListResponse> GetCandidates([FromQuery] PageRequest pageRequest)
         {
+            var sessionIdValid = _sessionService.RequestHasValidSessionId(HttpContext, _adminRepo);
+            if (!sessionIdValid)
+            {
+                return Unauthorized();
+            }
+
             var candidates = _candidates.GetAllCandidates(pageRequest);
             var candidateCount = _candidates.Count(pageRequest);
             return new CandidateListResponse(pageRequest, candidates, candidateCount);
