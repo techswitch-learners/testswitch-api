@@ -33,32 +33,17 @@ namespace TestSwitchApi.Controllers
         [HttpGet("")]
         public ActionResult<CandidateListResponse> GetCandidates([FromQuery] PageRequest pageRequest)
         {
-            if (!HttpContext.Request.Cookies.ContainsKey("sessionId"))
-            {
-                return StatusCode(401, "Unauthorised");
-            }
-            else
-            {
-                var sessionId = HttpContext.Request.Headers["sessionId"];
-                var session = _adminRepo.GetSession(sessionId);
-                if (session != null)
-                {
-                    // if (_sessionService.SessionInDate(session.SessionEnd))
-                    // {
-                    var candidates = _candidates.GetAllCandidates(pageRequest);
-                    var candidateCount = _candidates.Count(pageRequest);
-                    return new CandidateListResponse(pageRequest, candidates, candidateCount);
-                    // }
-                }
-            }
-
-            return StatusCode(401, "Unauthorised");
+            var candidates = _candidates.GetAllCandidates(pageRequest);
+            var candidateCount = _candidates.Count(pageRequest);
+            return new CandidateListResponse(pageRequest, candidates, candidateCount);
         }
+
 
         [HttpGet("{candidateId}")]
         public ActionResult<CandidateTestResponseModel> GetCandidateTestSubmissions(int candidateId)
         {
             var candidate = _candidates.GetCandidateById(candidateId);
+
             var submissions = _submissions.GetSubmissionsByCandidateId(candidateId);
             return new CandidateTestResponseModel(submissions, candidate);
         }
