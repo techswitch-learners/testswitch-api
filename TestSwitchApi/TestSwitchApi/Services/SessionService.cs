@@ -27,17 +27,7 @@ namespace TestSwitchApi.Services
                 return false;
             }
 
-            if (!SessionInDate(session.SessionEnd))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool SessionInDate(DateTime SessionEndTime)
-        {
-            return SessionEndTime > DateTime.Now ? true : false;
+            return session.SessionEnd > DateTime.Now;
         }
     }
 }
