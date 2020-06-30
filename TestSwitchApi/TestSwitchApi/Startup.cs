@@ -46,7 +46,7 @@ namespace TestSwitchApi
                     options.AddPolicy(
                         "AllowOrigin",
                         builder => builder.WithOrigins(
-                            "http://localhost:3001", "http://localhost:3000", "https://testswitch-candidate-staging.herokuapp.com", "https://testswitch-candidate.herokuapp.com", "https://testswitch-admin-staging.herokuapp.com", "https://testswitch-admin.herokuapp.com")
+                            "http://localhost:3001", "http://localhost:3000", "https://testswitch-candidate-staging.herokuapp.com", "https://testswitch-candidate.herokuapp.com", "https://testswitch-admin-staging.herokuapp.com", "https://testswitch-admin.herokuapp.com", "https://testswitch-frontend-admin.herokuapp.com/")
                             .AllowAnyHeader());
                 });
             if (env == "Development")
